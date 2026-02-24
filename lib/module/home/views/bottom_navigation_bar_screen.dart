@@ -115,14 +115,14 @@ class _MainScreenState extends State<MainScreen> {
           screen: SettingsView(),
           item: ItemConfig(
             icon: CustomSvgImage(
-              image: Assets.imagesProfile,
+              image: Assets.imagesSetting,
               imageHeight: 20,
               imageWidth: 20,
               imageColor: _controller.index == 3
                   ? const Color(0xFF6756d0)
                   : Colors.white,
             ),
-            title: "Profile",
+            title: "Setting",
             activeForegroundColor: const Color(0xFF6756d0),
             inactiveForegroundColor: Colors.grey,
           ),

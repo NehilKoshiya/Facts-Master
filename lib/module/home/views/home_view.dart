@@ -1,6 +1,9 @@
 import 'package:daily_facts/core/constants/app_colors.dart';
 import 'package:daily_facts/module/home/views/themes_screen.dart';
+import 'package:daily_facts/widgets/custom_button.dart';
+import 'package:daily_facts/widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:like_button/like_button.dart';
@@ -48,7 +51,8 @@ class FactsReelsScreen extends StatelessWidget {
                 itemBuilder: (_, index) {
                   return FactItem(
                     fact: controller.randomFacts[index],
-                    textColor: theme == null ? Colors.white : theme.textColor,
+                    // textColor: theme == null ? Colors.white : theme.textColor,
+                    textColor: Colors.white,
                     theme: theme,
                   );
                 },
@@ -142,122 +146,203 @@ class FactItem extends StatelessWidget {
         Center(
           child: Container(
             key: repaintKey,
-            width: 100,
-            height: 100,
+            margin: EdgeInsets.symmetric(horizontal: 30),
             decoration: BoxDecoration(
-              color: AppColors.darkSoftBg,
-
-              // image: theme == null || theme!.image.isEmpty
-              //     ? null
-              //     : DecorationImage(
-              //   image: AssetImage(theme!.image),
-              //   fit: BoxFit.cover,
-              // ),
+              color: Color(0xFF0D001C),
+              borderRadius: BorderRadius.circular(30),
             ),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(30),
-                child: AppText(
-                  fact,
-                  textAlign: TextAlign.center,
-                  fontSize: 22,
-                  height: 1.5,
-                  fontWeight: FontWeight.w600,
-                  color: textColor,
-                ),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 21, 2, 43),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(30),
+                      child: AppText(
+                        fact,
+                        textAlign: TextAlign.center,
+                        fontSize: 22,
+                        height: 1.5,
+                        fontWeight: FontWeight.w600,
+                        color: textColor,
+                      ),
+                    ),
+                  ),
+                  Gap(30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomContentCardButtons(
+                        image: Assets.imagesCopy,
+                        bgColor: AppColors.electricPurple.withOpacity(0.5),
+                        iconColor: AppColors.electricPurple,
+                        onTap: () {
+                          Constants().copyMessage(fact);
+                        },
+                      ),
+                      CustomContentCardButtons(
+                        image: Assets.imagesShare,
+                        bgColor: AppColors.electricPurple.withOpacity(0.5),
+                        iconColor: AppColors.electricPurple,
+                        onTap: () {
+                          Constants().shareOther(fact);
+                        },
+                      ),
+                      CustomContentCardButtons(
+                        image: '',
+                        bgColor: Colors.red.withOpacity(0.5),
+
+                        widget: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 2,
+                          ),
+                          child: LikeButton(
+                            isLiked: isLiked.value,
+                            padding: EdgeInsets.zero,
+                            onTap: (isLiked) async {
+                              Constants().toggleLike(fact);
+                              return !isLiked;
+                            },
+                            likeBuilder: (bool isLiked) {
+                              return Padding(
+                                padding: const EdgeInsets.all(4),
+                                child: CustomSvgImage(
+                                  image: Assets.imagesSaved,
+                                  imageColor: isLiked ? Colors.red : textColor,
+                                ),
+                              );
+                            },
+                            circleColor: CircleColor(
+                              start: Color.fromARGB(255, 255, 142, 142),
+                              end: Color.fromARGB(255, 219, 105, 105),
+                            ),
+                            bubblesColor: BubblesColor(
+                              dotPrimaryColor: Color.fromARGB(
+                                255,
+                                255,
+                                142,
+                                142,
+                              ),
+                              dotSecondaryColor: Color.fromARGB(
+                                255,
+                                164,
+                                72,
+                                72,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      CustomContentCardButtons(
+                        image: Assets.imagesWhatsApp,
+                        bgColor: AppColors.electricPurple.withOpacity(0.5),
+                        iconColor: AppColors.electricPurple,
+                        onTap: () {
+                          Constants().shareToWhatsApp(fact);
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
         ),
 
         /// ACTION ICONS (SCROLL WITH TEXT)
-        Positioned(
-          bottom: 160,
-          left: 0,
-          right: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              InkWell(
-                onTap: () {
-                  Constants().shareToWhatsApp(fact);
-                },
-                child: Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: textColor == Colors.white
-                            ? Colors.black38
-                            : Colors.white24,
-                        blurRadius: 25,
-                        spreadRadius: 5,
-                      ),
-                    ],
-                  ),
-                  child: Image.asset(Assets.imagesWhatsapp, height: 28),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  Constants().exportAndShare(fact, exportKey: repaintKey);
-                },
-                child: Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: textColor == Colors.white
-                            ? Colors.black38
-                            : Colors.white24,
-                        blurRadius: 25,
-                        spreadRadius: 5,
-                      ),
-                    ],
-                  ),
-                  child: Icon(Icons.share_outlined, size: 26, color: textColor),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: textColor == Colors.white
-                          ? Colors.black38
-                          : Colors.white24,
-                      blurRadius: 25,
-                      spreadRadius: 5,
-                    ),
-                  ],
-                ),
-                child: LikeButton(
-                  size: 41,
-                  isLiked: isLiked.value,
-                  padding: EdgeInsets.zero,
-                  onTap: (isLiked) async {
-                    Constants().toggleLike(fact);
-                    return !isLiked;
-                  },
-                  likeBuilder: (bool isLiked) {
-                    return Icon(
-                      isLiked ? Icons.favorite : Icons.favorite_border,
-                      color: isLiked ? Colors.red : textColor,
-                      size: 30,
-                    );
-                  },
-                  circleColor: CircleColor(
-                    start: Color.fromARGB(255, 255, 142, 142),
-                    end: Color.fromARGB(255, 219, 105, 105),
-                  ),
-                  bubblesColor: BubblesColor(
-                    dotPrimaryColor: Color.fromARGB(255, 255, 142, 142),
-                    dotSecondaryColor: Color.fromARGB(255, 164, 72, 72),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+        // Positioned(
+        //   bottom: 160,
+        //   left: 0,
+        //   right: 0,
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //     children: [
+        //       InkWell(
+        //         onTap: () {
+        //           Constants().shareToWhatsApp(fact);
+        //         },
+        //         child: Container(
+        //           padding: EdgeInsets.all(16),
+        //           decoration: BoxDecoration(
+        //             boxShadow: [
+        //               BoxShadow(
+        //                 color: textColor == Colors.white
+        //                     ? Colors.black38
+        //                     : Colors.white24,
+        //                 blurRadius: 25,
+        //                 spreadRadius: 5,
+        //               ),
+        //             ],
+        //           ),
+        //           child: Image.asset(Assets.imagesWhatsapp, height: 28),
+        //         ),
+        //       ),
+        //       InkWell(
+        //         onTap: () {
+        //           Constants().exportAndShare(fact, exportKey: repaintKey);
+        //         },
+        //         child: Container(
+        //           padding: EdgeInsets.all(16),
+        //           decoration: BoxDecoration(
+        //             boxShadow: [
+        //               BoxShadow(
+        //                 color: textColor == Colors.white
+        //                     ? Colors.black38
+        //                     : Colors.white24,
+        //                 blurRadius: 25,
+        //                 spreadRadius: 5,
+        //               ),
+        //             ],
+        //           ),
+        //           child: Icon(Icons.share_outlined, size: 26, color: textColor),
+        //         ),
+        //       ),
+        //       Container(
+        //         decoration: BoxDecoration(
+        //           boxShadow: [
+        //             BoxShadow(
+        //               color: textColor == Colors.white
+        //                   ? Colors.black38
+        //                   : Colors.white24,
+        //               blurRadius: 25,
+        //               spreadRadius: 5,
+        //             ),
+        //           ],
+        //         ),
+        // child: LikeButton(
+        //   size: 41,
+        //   isLiked: isLiked.value,
+        //   padding: EdgeInsets.zero,
+        //   onTap: (isLiked) async {
+        //     Constants().toggleLike(fact);
+        //     return !isLiked;
+        //   },
+        //   likeBuilder: (bool isLiked) {
+        //     return Icon(
+        //       isLiked ? Icons.favorite : Icons.favorite_border,
+        //       color: isLiked ? Colors.red : textColor,
+        //       size: 30,
+        //     );
+        //   },
+        //   circleColor: CircleColor(
+        //     start: Color.fromARGB(255, 255, 142, 142),
+        //     end: Color.fromARGB(255, 219, 105, 105),
+        //   ),
+        //   bubblesColor: BubblesColor(
+        //     dotPrimaryColor: Color.fromARGB(255, 255, 142, 142),
+        //     dotSecondaryColor: Color.fromARGB(255, 164, 72, 72),
+        //   ),
+        // ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }

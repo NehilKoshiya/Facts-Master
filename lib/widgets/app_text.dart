@@ -12,16 +12,16 @@ class AppText extends StatelessWidget {
   final int? maxLines;
 
   const AppText(
-      this.text, {
-        Key? key,
-        this.fontSize,
-        this.height,
-        this.fontWeight,
-        this.color,
-        this.textAlign,
-        this.overflow,
-        this.maxLines,
-      }) : super(key: key);
+    this.text, {
+    super.key,
+    this.fontSize,
+    this.height,
+    this.fontWeight,
+    this.color,
+    this.textAlign,
+    this.overflow,
+    this.maxLines,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +30,12 @@ class AppText extends StatelessWidget {
       maxLines: maxLines,
       overflow: overflow,
       textAlign: textAlign,
-      style: GoogleFonts.poppins(
+      style: TextStyle(
+        fontFamily: 'DM Sans',
         fontSize: fontSize,
         fontWeight: fontWeight ?? FontWeight.normal,
         color: color,
-        height: height
+        height: height,
       ),
     );
   }

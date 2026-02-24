@@ -1,4 +1,6 @@
 import 'package:daily_facts/widgets/app_text.dart';
+import 'package:daily_facts/widgets/custom_appbar.dart';
+import 'package:daily_facts/widgets/custom_text_filed.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/fact_controller.dart';
@@ -12,12 +14,12 @@ class ExploreTopicsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: customAppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Get.back(),
         ),
-        title: Obx(() {
+        titleWidget: Obx(() {
           if (controller.isSearching.value) {
             return TextField(
               autofocus: true,
@@ -28,7 +30,11 @@ class ExploreTopicsScreen extends StatelessWidget {
               ),
             );
           }
-          return const AppText('Explore topics');
+          return const AppText(
+            'Explore topics',
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          );
         }),
         actions: [
           Obx(() {
@@ -40,7 +46,39 @@ class ExploreTopicsScreen extends StatelessWidget {
             );
           }),
         ],
+        title: '',
+        context: context,
       ),
+
+      // AppBar(
+      // leading: IconButton(
+      //   icon: const Icon(Icons.arrow_back),
+      //   onPressed: () => Get.back(),
+      // ),
+      // title: Obx(() {
+      //   if (controller.isSearching.value) {
+      //     return TextField(
+      //       autofocus: true,
+      //       onChanged: controller.searchCategory,
+      //       decoration: const InputDecoration(
+      //         hintText: 'Search categories',
+      //         border: InputBorder.none,
+      //       ),
+      //     );
+      //   }
+      //   return const AppText('Explore topics');
+      // }),
+      // actions: [
+      //   Obx(() {
+      //     return IconButton(
+      //       icon: Icon(
+      //         controller.isSearching.value ? Icons.close : Icons.search,
+      //       ),
+      //       onPressed: controller.toggleSearch,
+      //     );
+      //   }),
+      // ],
+      // ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Obx(() {

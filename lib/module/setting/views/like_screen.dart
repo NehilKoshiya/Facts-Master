@@ -8,7 +8,6 @@ import '../../../services/storage_service.dart';
 import '../../../widgets/app_text.dart';
 import '../controllers/setting_controller.dart';
 
-
 class LikedMessagesView extends StatefulWidget {
   const LikedMessagesView({super.key});
 
@@ -19,14 +18,15 @@ class LikedMessagesView extends StatefulWidget {
 class _LikedMessagesViewState extends State<LikedMessagesView> {
   final SettingController c = Get.find();
 
-  @override
-  void initState() {
-    c.loadStoredData();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   c.loadStoredData();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    c.loadStoredData();
     return Scaffold(
       appBar: AppBar(title: const AppText("Liked Messages"), centerTitle: true),
       body: Obx(() {
@@ -42,10 +42,7 @@ class _LikedMessagesViewState extends State<LikedMessagesView> {
             List data = StorageService().read(Constants.likedMessages) ?? [];
             RxBool isLiked = data.contains(fact).obs;
             return Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -55,17 +52,13 @@ class _LikedMessagesViewState extends State<LikedMessagesView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      fact,
-                      fontSize: 16,
-                      height: 1.4,
-                    ),
+                    AppText(fact, fontSize: 16, height: 1.4),
                     const SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Row(
-                          children:  [
+                          children: [
                             LikeButton(
                               size: 30,
                               isLiked: isLiked.value,
@@ -76,7 +69,9 @@ class _LikedMessagesViewState extends State<LikedMessagesView> {
                               },
                               likeBuilder: (bool isLiked) {
                                 return Icon(
-                                  isLiked ? Icons.favorite : Icons.favorite_border,
+                                  isLiked
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
                                   color: isLiked ? Colors.red : null,
                                   size: 26,
                                 );
@@ -95,14 +90,17 @@ class _LikedMessagesViewState extends State<LikedMessagesView> {
                               onTap: () {
                                 Constants().shareToWhatsApp(fact);
                               },
-                              child: Image.asset(Assets.imagesWhatsapp, height: 20),
+                              child: Image.asset(
+                                Assets.imagesWhatsapp,
+                                height: 20,
+                              ),
                             ),
                             SizedBox(width: 12),
                             InkWell(
                               onTap: () {
                                 Constants().exportAndShare(fact);
                               },
-                              child: Icon(Icons.share_outlined, size: 22,),
+                              child: Icon(Icons.share_outlined, size: 22),
                             ),
                           ],
                         ),

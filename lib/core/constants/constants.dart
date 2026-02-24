@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'dart:ui';
 
@@ -97,7 +98,10 @@ class Constants {
     }
   }
 
-  Future<void> shareToWhatsApp(String message, {final GlobalKey? exportKey}) async {
+  Future<void> shareToWhatsApp(
+    String message, {
+    final GlobalKey? exportKey,
+  }) async {
     try {
       // final path = await Constants().exportToImage(exportKey);
       // if (path == null) {
@@ -105,20 +109,36 @@ class Constants {
       //   return;
       // }
       await SocialSharingPlus.shareToSocialMedia(
-          SocialPlatform.whatsapp,
-          message,
-          // media:path,
+        SocialPlatform.whatsapp,
+        message,
+        // media:path,
       );
     } catch (e) {
       print("WhatsApp Share Error: $e");
     }
   }
 
+  Future<void> shareOther(String message) async {
+    await SharePlus.instance.share(
+      ShareParams(text: message, subject: 'Facts'),
+    );
+  }
+
+  Future<void> copyMessage(String message) async {
+    try {
+      await Clipboard.setData(ClipboardData(text: message));
+      // Optional: show a toast/snackbar
+      log("Message copied to clipboard");
+    } catch (e) {
+      log("Copy Error: $e");
+    }
+  }
+
   Future<void> exportAndShare(
-  String message,
-      {BuildContext? context,
-        final GlobalKey? exportKey,}
-  ) async {
+    String message, {
+    BuildContext? context,
+    final GlobalKey? exportKey,
+  }) async {
     // final path = await Constants().exportToImage(exportKey!);
     // if (path == null) {
     //   Get.snackbar('Error', 'Unable to export image');
