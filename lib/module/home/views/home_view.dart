@@ -46,10 +46,6 @@ class FactsReelsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             child: Stack(
               children: [
-                // Padding(
-                //   padding: const EdgeInsets.only(top: 10),
-                //   child: CustomAppNameHeader(),
-                // ),
                 PageView.builder(
                   // controller: scrollController,
                   scrollDirection: Axis.vertical,
@@ -91,18 +87,22 @@ class FactsReelsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Positioned(
-                //   bottom: 10,
-                //   left: 0,
-                //   right: 0,
-                //   child: AdService().bannerAd == null
-                //       ? const SizedBox()
-                //       : SizedBox(
-                //           height: AdService().bannerAd!.size.height.toDouble(),
-                //           width: AdService().bannerAd!.size.width.toDouble(),
-                //           child: AdWidget(ad: AdService().bannerAd!),
-                //         ),
-                // ),
+                Positioned(
+                  bottom: 80,
+                  left: 0,
+                  right: 0,
+                  child: AdService().bannerAd == null
+                      ? SizedBox()
+                      : SizedBox(
+                          height: AdService().bannerAd!.size.height.toDouble(),
+                          width: AdService().bannerAd!.size.width.toDouble(),
+                          child: AdWidget(ad: AdService().bannerAd!),
+                        ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 18),
+                  child: CustomAppNameHeader(),
+                ),
               ],
             ),
           ),

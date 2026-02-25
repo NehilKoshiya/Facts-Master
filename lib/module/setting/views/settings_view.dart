@@ -122,6 +122,14 @@ class _SettingsViewState extends State<SettingsView> {
                       settingController.shareApp();
                     },
                   ),
+                  Gap(5),
+                  AppText(
+                    "${settingController.version}",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade600,
+                  ),
+                  Gap(15),
                 ],
               ),
             ),
@@ -130,11 +138,11 @@ class _SettingsViewState extends State<SettingsView> {
             //   text: "Version",
             //   image: Assets.imagesTheme,
 
-            //   // widget: AppText(
-            //   //   "${settingController.version}",
-            //   //   fontSize: 18,
-            //   //   fontWeight: FontWeight.w400,
-            //   // ),
+            // widget: AppText(
+            //   "${settingController.version}",
+            //   fontSize: 18,
+            //   fontWeight: FontWeight.w400,
+            // ),
             // ),
             buildNativeAd(),
           ],
