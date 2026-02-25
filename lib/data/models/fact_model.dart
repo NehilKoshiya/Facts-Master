@@ -19,10 +19,12 @@ class Datum {
   Datum({required this.categoryTitleName, required this.categoryList});
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    categoryTitleName: json["category_title_name"],
-    categoryList: List<CategoryList>.from(
-      json["category_list"].map((x) => CategoryList.fromJson(x)),
-    ),
+    categoryTitleName: json["category_title_name"]?.toString() ?? "No Title",
+    categoryList: json["category_list"] == null
+        ? []
+        : List<CategoryList>.from(
+            json["category_list"].map((x) => CategoryList.fromJson(x)),
+          ),
   );
 
   Map<String, dynamic> toJson() => {
@@ -34,7 +36,7 @@ class Datum {
 class CategoryList {
   final int categoryId;
   final String categoryName;
-  final String categoryImage;
+  final String  categoryImage;
   final List<String> facts;
 
   CategoryList({
@@ -45,10 +47,12 @@ class CategoryList {
   });
 
   factory CategoryList.fromJson(Map<String, dynamic> json) => CategoryList(
-    categoryId: json["category_id"],
-    categoryName: json["category_name"],
-    categoryImage: json["category_image"],
-    facts: List<String>.from(json["facts"].map((x) => x)),
+    categoryId: json["category_id"] ?? 0,
+    categoryName: json["category_name"]?.toString() ?? "Unknown",
+    categoryImage: json["category_image"]?.toString() ?? "",
+    facts: json["facts"] == null
+        ? []
+        : List<String>.from(json["facts"].map((x) => x.toString())),
   );
 
   Map<String, dynamic> toJson() => {

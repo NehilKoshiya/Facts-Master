@@ -1,5 +1,6 @@
 import 'package:daily_facts/core/constants/app_colors.dart';
 import 'package:daily_facts/module/home/views/themes_screen.dart';
+import 'package:daily_facts/widgets/custom_appbar.dart';
 import 'package:daily_facts/widgets/custom_button.dart';
 import 'package:daily_facts/widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,7 @@ import '../controllers/fact_controller.dart';
 import 'explore_topics_screen.dart';
 
 class FactsReelsScreen extends StatelessWidget {
-  final PageController scrollController;
-  FactsReelsScreen({super.key, required this.scrollController});
+  FactsReelsScreen({super.key});
 
   final FactController controller = Get.put(FactController());
 
@@ -42,62 +42,69 @@ class FactsReelsScreen extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
           ),
-          child: Stack(
-            children: [
-              PageView.builder(
-                controller: scrollController,
-                scrollDirection: Axis.vertical,
-                itemCount: controller.randomFacts.length,
-                itemBuilder: (_, index) {
-                  return FactItem(
-                    fact: controller.randomFacts[index],
-                    // textColor: theme == null ? Colors.white : theme.textColor,
-                    textColor: Colors.white,
-                    theme: theme,
-                  );
-                },
-              ),
-
-              Positioned(
-                bottom: 70,
-                left: 16,
-                right: 16,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // _roundIcon(
-                    //   Icons.grid_view_rounded,
-                    //   onTap: () => Get.to(() => ExploreTopicsScreen()),
-                    // ),
-                    // Row(
-                    //   children: [
-                    //     _roundIcon(
-                    //       Icons.format_paint_outlined,
-                    //       onTap: () => Get.to(() => ThemesScreen()),
-                    //     ),
-                    //     const SizedBox(width: 12),
-                    //     _roundIcon(
-                    //       Icons.person_outline,
-                    //       onTap: () => Get.to(() => SettingsView()),
-                    //     ),
-                    //   ],
-                    // ),
-                  ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            child: Stack(
+              children: [
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 10),
+                //   child: CustomAppNameHeader(),
+                // ),
+                PageView.builder(
+                  // controller: scrollController,
+                  scrollDirection: Axis.vertical,
+                  itemCount: controller.randomFacts.length,
+                  itemBuilder: (_, index) {
+                    return FactItem(
+                      fact: controller.randomFacts[index],
+                      // textColor: theme == null ? Colors.white : theme.textColor,
+                      textColor: Colors.white,
+                      theme: theme,
+                    );
+                  },
                 ),
-              ),
-              // Positioned(
-              //   bottom: 10,
-              //   left: 0,
-              //   right: 0,
-              //   child: AdService().bannerAd == null
-              //       ? const SizedBox()
-              //       : SizedBox(
-              //           height: AdService().bannerAd!.size.height.toDouble(),
-              //           width: AdService().bannerAd!.size.width.toDouble(),
-              //           child: AdWidget(ad: AdService().bannerAd!),
-              //         ),
-              // ),
-            ],
+
+                Positioned(
+                  bottom: 70,
+                  left: 16,
+                  right: 16,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // _roundIcon(
+                      //   Icons.grid_view_rounded,
+                      //   onTap: () => Get.to(() => ExploreTopicsScreen()),
+                      // ),
+                      // Row(
+                      //   children: [
+                      //     _roundIcon(
+                      //       Icons.format_paint_outlined,
+                      //       onTap: () => Get.to(() => ThemesScreen()),
+                      //     ),
+                      //     const SizedBox(width: 12),
+                      //     _roundIcon(
+                      //       Icons.person_outline,
+                      //       onTap: () => Get.to(() => SettingsView()),
+                      //     ),
+                      //   ],
+                      // ),
+                    ],
+                  ),
+                ),
+                // Positioned(
+                //   bottom: 10,
+                //   left: 0,
+                //   right: 0,
+                //   child: AdService().bannerAd == null
+                //       ? const SizedBox()
+                //       : SizedBox(
+                //           height: AdService().bannerAd!.size.height.toDouble(),
+                //           width: AdService().bannerAd!.size.width.toDouble(),
+                //           child: AdWidget(ad: AdService().bannerAd!),
+                //         ),
+                // ),
+              ],
+            ),
           ),
         );
       }),
@@ -146,9 +153,9 @@ class FactItem extends StatelessWidget {
         Center(
           child: Container(
             key: repaintKey,
-            margin: EdgeInsets.symmetric(horizontal: 30),
+
             decoration: BoxDecoration(
-              color: Color(0xFF0D001C),
+              color: AppColors.itemBgColor,
               borderRadius: BorderRadius.circular(30),
             ),
             child: Padding(
@@ -158,7 +165,7 @@ class FactItem extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 21, 2, 43),
+                      color: AppColors.secondItemBgColor,
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Padding(
@@ -179,23 +186,23 @@ class FactItem extends StatelessWidget {
                     children: [
                       CustomContentCardButtons(
                         image: Assets.imagesCopy,
-                        bgColor: AppColors.electricPurple.withOpacity(0.5),
-                        iconColor: AppColors.electricPurple,
+                        bgColor: AppColors.iconBgColor,
+                        iconColor: AppColors.iconColor,
                         onTap: () {
                           Constants().copyMessage(fact);
                         },
                       ),
                       CustomContentCardButtons(
                         image: Assets.imagesShare,
-                        bgColor: AppColors.electricPurple.withOpacity(0.5),
-                        iconColor: AppColors.electricPurple,
+                        bgColor: AppColors.iconBgColor,
+                        iconColor: AppColors.iconColor,
                         onTap: () {
                           Constants().shareOther(fact);
                         },
                       ),
                       CustomContentCardButtons(
                         image: '',
-                        bgColor: Colors.red.withOpacity(0.5),
+                        bgColor: AppColors.fevIconBgColor,
 
                         widget: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -241,8 +248,8 @@ class FactItem extends StatelessWidget {
                       ),
                       CustomContentCardButtons(
                         image: Assets.imagesWhatsApp,
-                        bgColor: AppColors.electricPurple.withOpacity(0.5),
-                        iconColor: AppColors.electricPurple,
+                        bgColor: AppColors.iconBgColor,
+                        iconColor: AppColors.iconColor,
                         onTap: () {
                           Constants().shareToWhatsApp(fact);
                         },

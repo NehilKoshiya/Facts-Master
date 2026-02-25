@@ -1,4 +1,5 @@
 import 'package:daily_facts/module/home/controllers/fact_controller.dart';
+import 'package:daily_facts/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,13 +13,15 @@ class ThemesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => Get.back(),
-        ),
-        title: const AppText('Themes'),
-      ),
+      appBar: customAppBar(title: 'Themes', context: context),
+
+      // AppBar(
+      //   leading: IconButton(
+      //     icon: const Icon(Icons.close),
+      //     onPressed: () => Get.back(),
+      //   ),
+      //   title: const AppText('Themes'),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: GridView.builder(

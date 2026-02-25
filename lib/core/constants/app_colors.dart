@@ -7,6 +7,13 @@ class AppColors {
   static const hotPink = Color(0xFFFF66C4);
   static const deepMagenta = Color(0xFFCC0F69);
   static const transparent = Colors.transparent;
+  static const itemBgColor = Color(0xFF0e0843);
+  static const bgColor = Color(0xFF0D001C);
+  static const secondItemBgColor = Color(0xFF252156);
+  static const iconBgColor = Color(0xFF0d3151);
+  static const iconColor = Color(0xFF1d56d2);
+  static const fevIconBgColor = Color(0xFF330934);
+  static const categoryBgColor = Color(0xFF1b0f3d);
 
   // 🌙 Dark Mode
   static const darkPrimaryBg = Color(0xFF0D0D0F);

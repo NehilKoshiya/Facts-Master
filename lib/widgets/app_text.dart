@@ -34,7 +34,7 @@ class AppText extends StatelessWidget {
         fontFamily: 'DM Sans',
         fontSize: fontSize,
         fontWeight: fontWeight ?? FontWeight.normal,
-        color: color,
+        color: color ?? Colors.white,
         height: height,
       ),
     );

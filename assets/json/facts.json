@@ -5,7 +5,7 @@
       "category_list": [
         {
           "category_id": 1,
-          "category_name": "Amazing Facts",
+          "category_name": "Amazing",
           "category_image": "Amazing_Facts.png",
           "facts": [
             "Octopuses have three hearts and blue blood.",
@@ -185,8 +185,8 @@
         },
         {
           "category_id": 3,
-          "category_name": "Random Facts",
-          "category_image": "Random.jpeg",
+          "category_name": "Random",
+          "category_image": "Random.png",
           "facts": [
             "The average person will spend about two weeks of their life kissing.",
             "A strawberry is not actually a berry, but a banana is.",
@@ -276,7 +276,7 @@
         },
         {
           "category_id": 4,
-          "category_name": "Fun Facts",
+          "category_name": "Fun",
           "category_image": "Fun.png",
           "facts": [
             "Fun fact: A group of kittens is called a kindle.",
@@ -381,8 +381,8 @@
         },
         {
           "category_id": 5,
-          "category_name": "Mind-Blowing Facts",
-          "category_image": "Mind_Blowing.jpeg",
+          "category_name": "Mind-Blowing",
+          "category_image": "Mind_Blowing.png",
           "facts": [
             "There are more possible iterations of a game of chess than there are atoms in the observable universe.",
             "A day on Venus is longer than a year on Venus.",
@@ -479,8 +479,8 @@
         },
         {
           "category_id": 6,
-          "category_name": "Science Facts",
-          "category_image": "Science.jpeg",
+          "category_name": "Science",
+          "category_image": "Science.png",
           "facts": [
             "Water expands as it freezes, which is why ice floats.",
             "Bananas are naturally radioactive due to their potassium content.",
@@ -587,7 +587,7 @@
         {
           "category_id": 8,
           "category_name": "Space & Universe",
-          "category_image": "Space_Universe.jpeg",
+          "category_image": "Space_Universe.png",
           "facts": [
             "The universe is approximately 13.8 billion years old.",
             "Light from the Sun takes about 8 minutes and 20 seconds to reach Earth.",
@@ -693,8 +693,8 @@
         },
         {
           "category_id": 13,
-          "category_name": "Geography Facts",
-          "category_image": "Geography.jpeg",
+          "category_name": "Geography",
+          "category_image": "Geography.png",
           "facts": [
             "Africa is the only continent located in all four hemispheres.",
             "Russia is the largest country in the world by land area.",
@@ -789,8 +789,8 @@
         },
         {
           "category_id": 14,
-          "category_name": "Mathematics Facts",
-          "category_image": "Mathematics.jpeg",
+          "category_name": "Mathematics",
+          "category_image": "Mathematics.png",
           "facts": [
             "Zero is the only number that cannot be represented in Roman numerals.",
             "A circle has the largest area of any shape with the same perimeter.",
@@ -895,8 +895,8 @@
       "category_list": [
         {
           "category_id": 9,
-          "category_name": "Human Body Facts",
-          "category_image": "Human_Body.jpeg",
+          "category_name": "Human Body",
+          "category_image": "Human_Body.png",
           "facts": [
             "The adult human body has 206 bones.",
             "Your brain weighs about 3 pounds.",
@@ -1001,8 +1001,8 @@
         },
         {
           "category_id": 10,
-          "category_name": "Psychology Facts",
-          "category_image": "Psychology.jpeg",
+          "category_name": "Psychology",
+          "category_image": "Psychology.png",
           "facts": [
             "Humans are the only animals that blush.",
             "Your brain is more active at night than during the day.",
@@ -1109,8 +1109,8 @@
         },
         {
           "category_id": 11,
-          "category_name": "Brain Facts",
-          "category_image": "Brain.jpeg",
+          "category_name": "Brain",
+          "category_image": "Brain.png",
           "facts": [
             "The human brain weighs about 1.3 to 1.4 kilograms.",
             "The brain uses about 20 percent of the body’s total energy.",
@@ -1213,7 +1213,7 @@
         {
           "category_id": 37,
           "category_name": "Human & Life",
-          "category_image": "Human-Life.jpeg",
+          "category_image": "Human-Life.png",
           "facts": [
             "The human body has 206 bones.",
             "The heart beats around 100,000 times a day.",
@@ -1324,8 +1324,8 @@
       "category_list": [
         {
           "category_id": 15,
-          "category_name": "Animal Facts",
-          "category_image": "Animal_Facts.jpeg",
+          "category_name": "Animal",
+          "category_image": "Animal_Facts.png",
           "facts": [
             "Octopuses have three hearts and blue blood.",
             "A group of flamingos is called a flamboyance.",
@@ -1419,8 +1419,8 @@
         },
         {
           "category_id": 16,
-          "category_name": "Bird Facts",
-          "category_image": "Bird_Facts.jpeg",
+          "category_name": "Bird",
+          "category_image": "Bird_Facts.png",
           "facts": [
             "Birds are the only animals with feathers.",
             "There are over 10,000 species of birds worldwide.",
@@ -1515,7 +1515,7 @@
         {
           "category_id": 17,
           "category_name": "Ocean & Sea Life",
-          "category_image": "Ocean_Sea.jpg",
+          "category_image": "Ocean_Sea.png",
           "facts": [
             "Oceans cover more than 70 percent of Earth’s surface.",
             "More than 80 percent of the ocean remains unexplored.",
@@ -1606,8 +1606,8 @@
         },
         {
           "category_id": 18,
-          "category_name": "Plant & Tree Facts",
-          "category_image": "Plant_Tree_Facts.jpeg",
+          "category_name": "Plant & Tree",
+          "category_image": "Plant_Tree_Facts.png",
           "facts": [
             "Plants produce oxygen through photosynthesis.",
             "There are over 390,000 known plant species on Earth.",
@@ -1703,7 +1703,7 @@
         {
           "category_id": 19,
           "category_name": "Nature Wonders",
-          "category_image": "Nature_Wonders.jpeg",
+          "category_image": "Nature_Wonders.png",
           "facts": [
             "The Great Barrier Reef is the largest living structure on Earth.",
             "Mount Everest is the highest mountain above sea level.",
@@ -1796,8 +1796,8 @@
         },
         {
           "category_id": 20,
-          "category_name": "Environmental Facts",
-          "category_image": "Environmental.jpeg",
+          "category_name": "Environmental",
+          "category_image": "Environmental.png",
           "facts": [
             "Recycling one aluminum can saves enough energy to run a TV for three hours.",
             "Deforestation contributes to about 15% of global greenhouse gas emissions.",
@@ -1895,8 +1895,8 @@
         },
         {
           "category_id": 21,
-          "category_name": "Weather & Climate Facts",
-          "category_image": "Weather-Climate-Facts.jpeg",
+          "category_name": "Weather & Climate",
+          "category_image": "Weather-Climate-Facts.png",
           "facts": [
             "Weather refers to short-term atmospheric conditions.",
             "Climate describes long-term weather patterns.",
@@ -1994,8 +1994,8 @@
       "category_list": [
         {
           "category_id": 12,
-          "category_name": "History Facts",
-          "category_image": "History.jpeg",
+          "category_name": "History",
+          "category_image": "History.png",
           "facts": [
             "The Great Pyramid of Giza is over 4,500 years old.",
             "Cleopatra lived closer in time to the Moon landing than to the building of the pyramids.",
@@ -2095,7 +2095,7 @@
         {
           "category_id": 22,
           "category_name": "Culture & Society",
-          "category_image": "Culture-Society.jpeg",
+          "category_image": "Culture-Society.png",
           "facts": [
             "Culture includes beliefs, customs, arts, and social behavior of a society.",
             "There are over 7,000 languages spoken worldwide.",
@@ -2188,103 +2188,9 @@
           ]
         },
         {
-          "category_id": 24,
-          "category_name": "Cultural Facts",
-          "category_image": "Cultural.jpeg",
-          "facts": [
-            "Culture includes traditions, customs, beliefs, and values of a society.",
-            "Different cultures have unique ways of greeting each other.",
-            "Food plays a central role in cultural identity.",
-            "Language is a key part of cultural expression.",
-            "Festivals often reflect cultural history and beliefs.",
-            "Traditional clothing varies by region and climate.",
-            "Music is a universal part of human culture.",
-            "Dance is used worldwide for celebration and storytelling.",
-            "Storytelling preserves cultural knowledge across generations.",
-            "Art reflects the values and emotions of a culture.",
-            "Family structures differ across cultures.",
-            "Marriage customs vary around the world.",
-            "Many cultures celebrate coming-of-age rituals.",
-            "Religion strongly influences cultural traditions.",
-            "Hospitality is highly valued in many cultures.",
-            "Body language meanings differ between cultures.",
-            "Colors have different symbolic meanings across cultures.",
-            "Architecture reflects cultural and environmental influences.",
-            "Folklore often teaches moral lessons.",
-            "Traditional music uses local instruments.",
-            "Time perception varies between cultures.",
-            "Some cultures emphasize community over individuality.",
-            "Respect for elders is common in many cultures.",
-            "Cultural traditions evolve over time.",
-            "Cuisine often depends on locally available ingredients.",
-            "Cultural identity shapes personal behavior.",
-            "Many cultures use festivals to mark seasons.",
-            "Symbols represent shared cultural meanings.",
-            "Traditional crafts preserve cultural heritage.",
-            "Cultural practices influence daily routines.",
-            "Humor differs greatly across cultures.",
-            "Myths are used to explain natural events.",
-            "Art can challenge cultural norms.",
-            "Language influences how people think.",
-            "Cultural exchange occurs through travel and trade.",
-            "Traditional medicine is part of many cultures.",
-            "Music can bring people together across cultures.",
-            "Cultural taboos define unacceptable behavior.",
-            "Festivals often include music, dance, and food.",
-            "Customs guide social interactions.",
-            "Cultural traditions can fade or transform.",
-            "Shared rituals strengthen community bonds.",
-            "Cultural values influence parenting styles.",
-            "Architecture often reflects social status.",
-            "Clothing can indicate cultural identity.",
-            "Cultural heritage sites protect history.",
-            "Rituals mark important life events.",
-            "Art preserves collective memory.",
-            "Language diversity reflects human creativity.",
-            "Cultural traditions provide a sense of belonging.",
-            "Social roles differ across cultures.",
-            "Cultural practices influence health habits.",
-            "Traditional ceremonies often involve symbolism.",
-            "Music styles vary by region.",
-            "Cultural norms shape communication styles.",
-            "Storytelling builds cultural identity.",
-            "Cultural beliefs influence food choices.",
-            "Traditional dances tell historical stories.",
-            "Cultural festivals attract global tourism.",
-            "Cultural identity connects past and present.",
-            "Many cultures pass knowledge orally.",
-            "Cultural diversity enriches societies.",
-            "Art forms evolve with society.",
-            "Cultural traditions can unite generations.",
-            "Cultural expressions adapt to modern times.",
-            "Social values guide moral behavior.",
-            "Traditional attire often reflects climate.",
-            "Cultural symbols convey shared meaning.",
-            "Cultural practices strengthen group identity.",
-            "Language preserves cultural history.",
-            "Cultural heritage is passed through education.",
-            "Music reflects cultural emotions.",
-            "Traditional food recipes are passed down generations.",
-            "Cultural beliefs influence celebrations.",
-            "Cultural traditions help define communities.",
-            "Art is a mirror of culture.",
-            "Cultural rituals bring people together.",
-            "Cultural identity influences worldview.",
-            "Traditions help preserve cultural uniqueness.",
-            "Cultural expressions evolve with time.",
-            "Shared customs create social harmony.",
-            "Cultural differences encourage learning.",
-            "Traditional values influence modern life.",
-            "Culture shapes social behavior.",
-            "Cultural heritage connects generations.",
-            "Cultural diversity promotes understanding.",
-            "Culture defines how societies function."
-          ]
-        },
-        {
           "category_id": 26,
-          "category_name": "Country Facts",
-          "category_image": "Country.jpeg",
+          "category_name": "Country",
+          "category_image": "Country.png",
           "facts": [
             "Russia is the largest country by land area.",
             "Vatican City is the smallest country in the world.",
@@ -2406,7 +2312,7 @@
         {
           "category_id": 27,
           "category_name": "Traditions & Customs",
-          "category_image": "Traditions-Customs.jpeg",
+          "category_image": "Traditions-Customs.png",
           "facts": [
             "Traditions are practices passed down through generations.",
             "Customs often reflect cultural values.",
@@ -2514,8 +2420,8 @@
         },
         {
           "category_id": 53,
-          "category_name": "Mythology Facts",
-          "category_image": "Mythology.jpeg",
+          "category_name": "Mythology",
+          "category_image": "Mythology.png",
           "facts": [
             "Greek mythology has over 12 major gods known as the Olympians.",
             "The Norse god Odin sacrificed one eye for wisdom.",
@@ -2623,8 +2529,8 @@
         },
         {
           "category_id": 54,
-          "category_name": "Ancient Civilization Facts",
-          "category_image": "Ancient-Civilization.jpeg",
+          "category_name": "Ancient Civilization",
+          "category_image": "Ancient-Civilization.png",
           "facts": [
             "The Great Pyramid of Giza is over 4,500 years old.",
             "Mesopotamia is considered the cradle of civilization.",
@@ -2738,8 +2644,8 @@
       "category_list": [
         {
           "category_id": 7,
-          "category_name": "Technology Facts",
-          "category_image": "Technology.jpeg",
+          "category_name": "Technology",
+          "category_image": "Technology.png",
           "facts": [
             "The first computer virus was created in 1986 and was called Brain.",
             "The first 1GB hard drive, released in 1980, weighed over 500 pounds.",
@@ -2842,8 +2748,8 @@
         },
         {
           "category_id": 25,
-          "category_name": "Language Facts",
-          "category_image": "Language.jpeg",
+          "category_name": "Language",
+          "category_image": "Language.png",
           "facts": [
             "There are over 7,000 languages spoken in the world today.",
             "Languages constantly evolve over time.",
@@ -2932,8 +2838,8 @@
         },
         {
           "category_id": 28,
-          "category_name": "Food & Cuisine Facts",
-          "category_image": "Food-Cuisine.jpeg",
+          "category_name": "Food & Cuisine",
+          "category_image": "Food-Cuisine.png",
           "facts": [
             "Food is essential for energy and survival.",
             "Rice is a staple food for more than half the world’s population.",
@@ -3051,7 +2957,7 @@
         {
           "category_id": 29,
           "category_name": "Entertainment & Lifestyle",
-          "category_image": "Entertainment-Lifestyle.jpeg",
+          "category_image": "Entertainment-Lifestyle.png",
           "facts": [
             "Movies are a popular form of entertainment worldwide.",
             "The first motion picture was created in the late 19th century.",
@@ -3169,7 +3075,7 @@
         },
         {
           "category_id": 30,
-          "category_name": "Movie Facts",
+          "category_name": "Movie",
           "category_image": "Movie.png",
           "facts": [
             "The first movie ever recorded was in 1888 by Louis Le Prince.",
@@ -3283,8 +3189,8 @@
         },
         {
           "category_id": 31,
-          "category_name": "Music Facts",
-          "category_image": "Music.jpeg",
+          "category_name": "Music",
+          "category_image": "Music.png",
           "facts": [
             "Music is a universal language understood by all cultures.",
             "The oldest known musical instruments are flutes over 40,000 years old.",
@@ -3401,8 +3307,8 @@
         },
         {
           "category_id": 32,
-          "category_name": "Celebrity Facts",
-          "category_image": "Celebrity.jpeg",
+          "category_name": "Celebrity",
+          "category_image": "Celebrity.png",
           "facts": [
             "Celebrity culture influences fashion and lifestyle worldwide.",
             "Actors often become international icons.",
@@ -3527,8 +3433,8 @@
         },
         {
           "category_id": 33,
-          "category_name": "Sports Facts",
-          "category_image": "Sports.jpeg",
+          "category_name": "Sports",
+          "category_image": "Sports.png",
           "facts": [
             "Soccer, also known as football, is the most popular sport worldwide.",
             "The Olympic Games began in ancient Greece.",
@@ -3649,8 +3555,8 @@
         },
         {
           "category_id": 34,
-          "category_name": "Gaming Facts",
-          "category_image": "Gaming.jpeg",
+          "category_name": "Gaming",
+          "category_image": "Gaming.png",
           "facts": [
             "The first video game ever created was 'Tennis for Two' in 1958.",
             "The first arcade video game was 'Pong' in 1972.",
@@ -3768,8 +3674,8 @@
         },
         {
           "category_id": 35,
-          "category_name": "Travel Facts",
-          "category_image": "Travel.jpeg",
+          "category_name": "Travel",
+          "category_image": "Travel.png",
           "facts": [
             "Traveling exposes you to new cultures and experiences.",
             "The Great Wall of China is over 13,000 miles long.",
@@ -3881,8 +3787,8 @@
         },
         {
           "category_id": 36,
-          "category_name": "Luxury Facts",
-          "category_image": "Luxury.jpeg",
+          "category_name": "Luxury",
+          "category_image": "Luxury.png",
           "facts": [
             "Luxury goods often symbolize wealth and status.",
             "Designer brands like Gucci and Chanel are recognized globally.",
@@ -3994,7 +3900,7 @@
         {
           "category_id": 38,
           "category_name": "Love & Relationship",
-          "category_image": "Love-Relationship.jpeg",
+          "category_image": "Love-Relationship.png",
           "facts": [
             "Love triggers the release of oxytocin, known as the 'love hormone.'",
             "Couples who laugh together tend to have stronger relationships.",
@@ -4104,8 +4010,8 @@
         },
         {
           "category_id": 39,
-          "category_name": "Friendship Facts",
-          "category_image": "Friendship.jpeg",
+          "category_name": "Friendship",
+          "category_image": "Friendship.png",
           "facts": [
             "Friendship improves mental and emotional well-being.",
             "Close friends can reduce stress and anxiety.",
@@ -4221,8 +4127,8 @@
       "category_list": [
         {
           "category_id": 40,
-          "category_name": "Life Facts",
-          "category_image": "Life.jpeg",
+          "category_name": "Life",
+          "category_image": "Life.png",
           "facts": [
             "Life expectancy has increased globally due to medicine and technology.",
             "Water makes up about 60% of the human body.",
@@ -4332,8 +4238,8 @@
         },
         {
           "category_id": 41,
-          "category_name": "Motivational Facts",
-          "category_image": "Motivational.jpeg",
+          "category_name": "Motivational",
+          "category_image": "Motivational.png",
           "facts": [
             "Motivation can increase productivity and focus.",
             "Setting clear goals improves achievement.",
@@ -4447,8 +4353,8 @@
         },
         {
           "category_id": 42,
-          "category_name": "Success Facts",
-          "category_image": "Success.jpeg",
+          "category_name": "Success",
+          "category_image": "Success.png",
           "facts": [
             "Success often comes to those who persevere despite failure.",
             "Setting clear goals is essential for achieving success.",
@@ -4557,8 +4463,8 @@
         },
         {
           "category_id": 43,
-          "category_name": "Happiness Facts",
-          "category_image": "Happiness.jpeg",
+          "category_name": "Happiness",
+          "category_image": "Happiness.png",
           "facts": [
             "Happiness can improve physical health and boost immunity.",
             "Gratitude is strongly linked to increased happiness.",
@@ -4665,8 +4571,8 @@
         },
         {
           "category_id": 50,
-          "category_name": "Spiritual Facts",
-          "category_image": "Spiritual.jpeg",
+          "category_name": "Spiritual",
+          "category_image": "Spiritual.png",
           "facts": [
             "Meditation can physically change your brain and increase gray matter.",
             "Gratitude practice improves mental well-being.",
@@ -4770,8 +4676,8 @@
         },
         {
           "category_id": 51,
-          "category_name": "Health & Fitness Facts",
-          "category_image": "Health-Fitness.jpeg",
+          "category_name": "Health & Fitness",
+          "category_image": "Health-Fitness.png",
           "facts": [
             "Regular exercise improves mood and reduces stress.",
             "Walking 30 minutes a day can reduce the risk of heart disease.",
@@ -4881,7 +4787,7 @@
         {
           "category_id": 52,
           "category_name": "Daily Health Tips",
-          "category_image": "Daily-Health.jpeg",
+          "category_image": "Daily-Health.png",
           "facts": [
             "Drink at least 8 glasses of water daily.",
             "Eat a balanced diet rich in fruits and vegetables.",
@@ -5005,7 +4911,7 @@
         {
           "category_id": 23,
           "category_name": "World Records",
-          "category_image": "World-Records.jpeg",
+          "category_image": "World-Records.png",
           "facts": [
             "The tallest human ever recorded was Robert Wadlow at 8 feet 11 inches.",
             "The shortest adult human ever recorded was 2 feet 1.6 inches tall.",
@@ -5098,8 +5004,8 @@
         },
         {
           "category_id": 44,
-          "category_name": "Curious & Weird Facts",
-          "category_image": "Curious-Weird.jpeg",
+          "category_name": "Curious & Weird",
+          "category_image": "Curious-Weird.png",
           "facts": [
             "Octopuses have three hearts and blue blood.",
             "Bananas are berries, but strawberries are not.",
@@ -5205,120 +5111,9 @@
           ]
         },
         {
-          "category_id": 45,
-          "category_name": "Weird Facts",
-          "category_image": "Weird.jpeg",
-          "facts": [
-            "Some turtles can breathe through their butts.",
-            "Wombat poop is cube-shaped.",
-            "Octopuses have three hearts and blue blood.",
-            "Bananas are berries, but strawberries are not.",
-            "Honey never spoils and can last thousands of years.",
-            "Sharks existed before trees.",
-            "Sloths can hold their breath longer than dolphins.",
-            "A day on Venus is longer than a year on Venus.",
-            "Butterflies can taste with their feet.",
-            "Humans share 60% of their DNA with bananas.",
-            "Sea otters hold hands while sleeping to stay together.",
-            "Cows have best friends and get stressed when separated.",
-            "A group of flamingos is called a 'flamboyance.'",
-            "Pineapples take about two years to grow.",
-            "Sharks can live up to 500 years.",
-            "There’s a species of jellyfish that can revert to its youth.",
-            "Sloths can rotate their heads almost 360 degrees.",
-            "Cats have fewer toes on their back paws than their front paws.",
-            "The fingerprints of a koala are almost identical to humans'.",
-            "Rats laugh when tickled.",
-            "Some frogs can freeze and survive winter.",
-            "The heart of a shrimp is located in its head.",
-            "Crows can recognize human faces and remember them.",
-            "Some fish can walk on land.",
-            "A cloud can weigh more than a million pounds.",
-            "Penguins propose with pebbles.",
-            "Sea cucumbers can eject their internal organs as defense.",
-            "The longest hiccuping spree lasted 68 years.",
-            "Some mushrooms can glow in the dark.",
-            "A snail can sleep for three years.",
-            "The mantis shrimp has the fastest punch in the animal kingdom.",
-            "Some birds can mimic human speech perfectly.",
-            "Sharks can detect one drop of blood in an Olympic-sized pool.",
-            "Elephants can hear through their feet.",
-            "Some lizards can squirt blood from their eyes to deter predators.",
-            "A cockroach can live for weeks without its head.",
-            "Starfish can regrow lost arms.",
-            "There’s a species of spider that can swim underwater.",
-            "Some plants can eat insects for nutrition.",
-            "Frogs drink water through their skin.",
-            "Some snakes can glide through the air.",
-            "A hummingbird’s heart can beat over 1,200 times per minute.",
-            "Sloths have algae growing on their fur.",
-            "Sharks don’t have bones; their skeletons are made of cartilage.",
-            "There’s a species of ant that can create living bridges.",
-            "Butterflies can see ultraviolet colors invisible to humans.",
-            "Cows can produce more milk when listening to music.",
-            "The tongue of a blue whale can weigh as much as an elephant.",
-            "Some plants can communicate using electrical signals.",
-            "A group of porcupines is called a 'prickle.'",
-            "Sloths only poop once a week.",
-            "Penguins have knees hidden under their feathers.",
-            "Some animals can see ultraviolet light that humans cannot.",
-            "Some frogs can jump over 20 times their own length.",
-            "A group of ferrets is called a 'business.'",
-            "Octopuses can squeeze through tiny gaps due to no bones.",
-            "There are more bacteria in your mouth than people on Earth.",
-            "Some birds can sleep while flying.",
-            "Sea horses have male pregnancy.",
-            "Sloths can hold their breath for up to 40 minutes underwater.",
-            "Some worms can survive decapitation.",
-            "Sharks are immune to most diseases.",
-            "Cows have best friends and become stressed when separated.",
-            "A group of owls is called a 'parliament.'",
-            "Some turtles can live for over 150 years.",
-            "Some frogs can survive being frozen solid.",
-            "There’s a jellyfish that can live forever.",
-            "Some birds can remember thousands of locations for food storage.",
-            "Sloths turn green due to algae growing on their fur.",
-            "Some snakes can swim for long distances in water.",
-            "There’s a type of mushroom that can produce electricity.",
-            "Some animals can sense earthquakes before they happen.",
-            "Sharks can detect electric fields produced by other animals.",
-            "A group of crows is called a 'murder.'",
-            "Some birds can sleep with one eye open.",
-            "Octopuses can edit their RNA to adapt to environments.",
-            "Sloths can rotate their necks nearly 270 degrees.",
-            "Some plants can move in response to touch or light.",
-            "Frogs can survive in extreme cold by freezing themselves.",
-            "Some animals use tools to obtain food.",
-            "Crows can hold grudges against humans.",
-            "Some fish can walk on land using fins.",
-            "Some spiders can survive underwater for hours.",
-            "Sea slugs can absorb solar energy to survive.",
-            "Some frogs can change gender.",
-            "Sharks can detect magnetic fields for navigation.",
-            "Some turtles can survive without oxygen for months.",
-            "The axolotl can regenerate limbs and organs.",
-            "Some birds can see magnetic fields.",
-            "Some fish can recognize human faces.",
-            "Octopuses can open jars to get food.",
-            "Some insects can survive being frozen.",
-            "Some lizards can detach their tails to escape predators.",
-            "Some birds decorate their nests with colorful objects.",
-            "A group of ferrets is called a 'business.'",
-            "Some animals can survive extreme radiation.",
-            "The pistol shrimp can stun prey with a sonic blast.",
-            "Some snakes can survive months without food.",
-            "Some frogs give birth through their mouths.",
-            "Some plants can survive without sunlight for extended periods.",
-            "The hagfish produces slime to escape predators.",
-            "Some birds can fly backwards.",
-            "Sharks existed before butterflies.",
-            "Some animals have transparent skin."
-          ]
-        },
-        {
           "category_id": 46,
           "category_name": "Strange Laws",
-          "category_image": "Strange.jpeg",
+          "category_image": "Strange.png",
           "facts": [
             "In Switzerland, it is illegal to own just one guinea pig.",
             "In Samoa, it is illegal to forget your wife’s birthday.",
@@ -5416,8 +5211,8 @@
         },
         {
           "category_id": 47,
-          "category_name": "Unbelievable Facts",
-          "category_image": "Unbelievable.jpeg",
+          "category_name": "Unbelievable",
+          "category_image": "Unbelievable.png",
           "facts": [
             "Sharks existed before trees.",
             "There are more stars in the universe than grains of sand on Earth.",
@@ -5535,8 +5330,8 @@
         },
         {
           "category_id": 48,
-          "category_name": "Conspiracy & Mystery Facts",
-          "category_image": "Conspiracy-Mystery.jpeg",
+          "category_name": "Conspiracy & Mystery",
+          "category_image": "Conspiracy-Mystery.png",
           "facts": [
             "The Bermuda Triangle is famous for unexplained disappearances of ships and planes.",
             "Some believe the moon landing in 1969 was staged.",
@@ -5651,8 +5446,8 @@
         },
         {
           "category_id": 49,
-          "category_name": "Unknown Facts",
-          "category_image": "Unknown.jpeg",
+          "category_name": "Unknown",
+          "category_image": "Unknown.png",
           "facts": [
             "The deepest part of the ocean is deeper than Mount Everest is tall.",
             "Most of the ocean remains unexplored by humans.",

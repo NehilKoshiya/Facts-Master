@@ -19,7 +19,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late final PersistentTabController _controller;
-  final PageController _pageController = PageController();
   bool _hideNavBar = false;
 
   @override
@@ -30,27 +29,36 @@ class _MainScreenState extends State<MainScreen> {
     _controller.addListener(() {
       setState(() {});
     });
-    // Detect Scroll Direction
-    _pageController.addListener(() {
-      if (!_pageController.hasClients) return;
-
-      final direction = _pageController.position.userScrollDirection;
-
-      if (direction == ScrollDirection.reverse && !_hideNavBar) {
-        log("Hiding Nav Bar");
-        setState(() => _hideNavBar = true);
-      } else if (direction == ScrollDirection.forward && _hideNavBar) {
-        log("Showing Nav Bar");
-        setState(() => _hideNavBar = false);
-      }
-    });
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
     _controller.dispose();
     super.dispose();
+  }
+
+  /// 🔥 Common Scroll Detection Widget
+  Widget _wrapWithScrollListener(Widget child) {
+    return NotificationListener<UserScrollNotification>(
+      onNotification: (notification) {
+        // Only react when user actually scrolls
+        if (notification.direction == ScrollDirection.idle) {
+          return false;
+        }
+
+        final shouldHide = notification.direction == ScrollDirection.reverse;
+
+        // Only update if state really changes
+        if (shouldHide != _hideNavBar) {
+          setState(() {
+            _hideNavBar = shouldHide;
+          });
+        }
+
+        return false;
+      },
+      child: child,
+    );
   }
 
   @override
@@ -62,8 +70,7 @@ class _MainScreenState extends State<MainScreen> {
       margin: EdgeInsets.zero,
       tabs: [
         PersistentTabConfig(
-          screen: FactsReelsScreen(scrollController: _pageController),
-
+          screen: _wrapWithScrollListener(FactsReelsScreen()),
           item: ItemConfig(
             icon: CustomSvgImage(
               image: Assets.imagesHome,
@@ -74,13 +81,13 @@ class _MainScreenState extends State<MainScreen> {
                   : Colors.white,
             ),
             title: "Home",
-
             activeForegroundColor: Colors.pinkAccent,
             inactiveForegroundColor: Colors.grey,
           ),
         ),
+
         PersistentTabConfig(
-          screen: ExploreTopicsScreen(),
+          screen: _wrapWithScrollListener(ExploreTopicsScreen()),
           item: ItemConfig(
             icon: CustomSvgImage(
               image: Assets.imagesCategory,
@@ -91,12 +98,13 @@ class _MainScreenState extends State<MainScreen> {
                   : Colors.white,
             ),
             title: "Category",
-            activeForegroundColor: Color(0xFF41b37e),
+            activeForegroundColor: const Color(0xFF41b37e),
             inactiveForegroundColor: Colors.grey,
           ),
         ),
+
         PersistentTabConfig(
-          screen: LikedMessagesView(),
+          screen: _wrapWithScrollListener(LikedMessagesView()),
           item: ItemConfig(
             icon: CustomSvgImage(
               image: Assets.imagesSaved,
@@ -111,8 +119,9 @@ class _MainScreenState extends State<MainScreen> {
             inactiveForegroundColor: Colors.grey,
           ),
         ),
+
         PersistentTabConfig(
-          screen: SettingsView(),
+          screen:  _wrapWithScrollListener(SettingsView()),
           item: ItemConfig(
             icon: CustomSvgImage(
               image: Assets.imagesSetting,
@@ -128,20 +137,18 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ],
+
       navBarBuilder: (navBarConfig) => Padding(
         padding: const EdgeInsets.all(20),
-
         child: Style2BottomNavBar(
           navBarConfig: navBarConfig,
-
-          itemAnimationProperties: ItemAnimation(
+          itemAnimationProperties: const ItemAnimation(
             duration: Durations.extralong2,
           ),
-
-          itemPadding: EdgeInsets.all(10),
+          itemPadding: const EdgeInsets.all(10),
           navBarDecoration: NavBarDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Color(0xFF0D001C),
+            color: AppColors.itemBgColor,
           ),
         ),
       ),

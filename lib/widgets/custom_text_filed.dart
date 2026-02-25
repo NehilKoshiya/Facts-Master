@@ -69,7 +69,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       readOnly: readOnly,
       focusNode: focusNode,
-      cursorColor: AppColors.darkSoftBg,
+      cursorColor: Colors.white,
       onTap: textFiledOnTap,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onChanged: onChanged,
@@ -78,7 +78,7 @@ class CustomTextField extends StatelessWidget {
       minLines: maxLine,
       textAlign: TextAlign.start,
       style: TextStyle(
-        color: AppColors.darkSoftBg,
+        color: Colors.white,
         fontFamily: 'DM Sans',
         fontSize: 14,
         fontWeight: FontWeight.w500,
@@ -89,7 +89,7 @@ class CustomTextField extends StatelessWidget {
         alignLabelWithHint: true,
 
         filled: true,
-        fillColor: fillColor ?? Color.fromARGB(255, 21, 2, 43),
+        fillColor: fillColor ?? AppColors.itemBgColor,
         contentPadding:
             padding ??
             EdgeInsets.symmetric(horizontal: prefixImage == '' ? 15 : 24),
@@ -117,13 +117,16 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: suffixImage == ''
             ? suffixIcon
             : CustomTextFiledIcon(image: suffixImage, color: suffixColor),
-        border: border(),
-        disabledBorder: border(),
-        enabledBorder: border(),
-        focusedBorder: border(
-          borderSide:
-              focusBorderSide ?? BorderSide(color: AppColors.darkSoftBg),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide.none,
         ),
+        // disabledBorder: border(),
+        // enabledBorder: border(),
+        // focusedBorder: border(
+        //   borderSide:
+        //       focusBorderSide ?? BorderSide(color: AppColors.darkSoftBg),
+        // ),
       ),
     );
   }

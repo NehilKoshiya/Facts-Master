@@ -1,3 +1,4 @@
+import 'package:daily_facts/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -29,15 +29,15 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
+        color: AppColors.bgColor,
 
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF0D001C), Color(0xFF120021), Color(0xFF19002E)],
-          ),
-        ),
-
+        // decoration: const BoxDecoration(
+        //   gradient: LinearGradient(
+        //     begin: Alignment.topCenter,
+        //     end: Alignment.bottomCenter,
+        //     colors: [Color(0xFF0D001C), Color(0xFF120021), Color(0xFF19002E)],
+        //   ),
+        // ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -57,16 +57,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 "Fact Master - Brain Bites",
                 fontWeight: FontWeight.w500,
                 fontSize: 22,
-                color: Color(0xFFFF2DDC),
+                color: Colors.white,
               ),
 
               const SizedBox(height: 6),
 
-              AppText(
-                "Daily Facts",
-                fontSize: 18,
-                color: Color(0xFFFF5CF3),
-              ),
+              AppText("Daily Facts", fontSize: 18, color: Colors.white),
             ],
           ),
         ),

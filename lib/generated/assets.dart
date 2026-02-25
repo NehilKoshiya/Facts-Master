@@ -82,8 +82,10 @@ class Assets {
   static const String imagesSaved = 'assets/images/Saved.svg';
   static const String imagesProfile = 'assets/images/Profile.svg';
   static const String imagesTheme = 'assets/images/Theme.svg';
+  static const String imagesPrivacyPolicy = 'assets/images/PrivacyPolicy.svg';
   static const String imagesCopy = 'assets/images/Copy.svg';
   static const String imagesWhatsApp = 'assets/images/Whatsapp.svg';
   static const String imagesShare = 'assets/images/Share.svg';
   static const String imagesSetting = 'assets/images/Setting.svg';
+  static const String imagesSearch = 'assets/images/Search.svg';
 }

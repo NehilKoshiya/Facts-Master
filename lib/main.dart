@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'core/constants/app_colors.dart';
 import 'module/setting/controllers/setting_controller.dart';
@@ -35,7 +34,8 @@ class MyApp extends StatelessWidget {
 
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  scaffoldBackgroundColor: AppColors.lightPrimaryBg,
+  // scaffoldBackgroundColor: AppColors.lightPrimaryBg,
+  scaffoldBackgroundColor: AppColors.bgColor,
 
   primaryColor: AppColors.neonPink,
   hintColor: AppColors.neonPink,

@@ -1,6 +1,9 @@
+import 'package:daily_facts/core/constants/app_colors.dart';
 import 'package:daily_facts/generated/assets.dart';
+import 'package:daily_facts/widgets/custom_appbar.dart';
 import 'package:daily_facts/widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -28,23 +31,20 @@ class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const AppText("Settings"),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-      ),
+      appBar: mainAppBar(context: context),
+
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
-            Obx(
-              () => SwitchListTile(
-                contentPadding: EdgeInsets.zero,
-                title: AppText('Dark Mode', fontWeight: FontWeight.w400),
-                value: settingController.themeMode.value == ThemeMode.dark,
-                onChanged: (val) => settingController.toggleTheme(val),
-              ),
-            ),
+            // Obx(
+            //   () => SwitchListTile(
+            //     contentPadding: EdgeInsets.zero,
+            //     title: AppText('Dark Mode', fontWeight: FontWeight.w400),
+            //     value: settingController.themeMode.value == ThemeMode.dark,
+            //     onChanged: (val) => settingController.toggleTheme(val),
+            //   ),
+            // ),
             // Divider(height: 30),
             // rowData(
             //   text: "Like",
@@ -53,59 +53,89 @@ class _SettingsViewState extends State<SettingsView> {
             //     Get.toNamed(AppRoutes.likedMessagesView);
             //   },
             // ),
-            Divider(height: 30),
-            rowData(
-              text: "Theme",
-
-              widget: CustomSvgImage(image: Assets.imagesTheme),
-              onTap: () {
-                Get.toNamed(AppRoutes.themesScreen);
-              },
-            ),
             // Divider(height: 30),
-            // rowData(text: "Remove Ads", icon: Icons.ac_unit),
-            Divider(height: 30),
-            rowData(
-              text: "Privacy policy",
-              icon: Icons.privacy_tip_outlined,
-              onTap: () {
-                settingController.openPrivacyPolicy();
-              },
-            ),
-            Divider(height: 30),
-            rowData(
-              text: "Terms and Conditions",
-              icon: Icons.add_moderator_rounded,
-              onTap: () {
-                settingController.openPrivacyPolicy();
-              },
-            ),
-            Divider(height: 30),
-            rowData(
-              text: "Rate 5 Star",
-              icon: Icons.star_border,
-              onTap: () {
-                settingController.openPlayStore();
-              },
-            ),
-            Divider(height: 30),
-            rowData(
-              text: "Share App",
-              icon: Icons.share_outlined,
-              onTap: () {
-                settingController.shareApp();
-              },
-            ),
-            Divider(height: 30),
-            rowData(
-              text: "Version",
-              widget: AppText(
-                "${settingController.version}",
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
+            Gap(20),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.itemBgColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: rowData(
+                text: "Theme",
+                imageColor: Colors.deepPurple,
+                image: Assets.imagesTheme,
+                onTap: () {
+                  Get.toNamed(AppRoutes.themesScreen);
+                },
               ),
             ),
-            Divider(height: 30),
+            Gap(20),
+
+            // Divider(height: 30),
+            // rowData(text: "Remove Ads", icon: Icons.ac_unit),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.itemBgColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Column(
+                children: [
+                  rowData(
+                    text: "Privacy policy",
+                    image: Assets.imagesPrivacyPolicy,
+                    imageColor: Colors.green,
+
+                    onTap: () {
+                      settingController.openPrivacyPolicy();
+                    },
+                  ),
+                  Gap(5),
+                  rowData(
+                    text: "Terms and Conditions",
+                    image: Assets.imagesTheme,
+                    imageColor: Colors.cyan,
+
+                    onTap: () {
+                      settingController.openPrivacyPolicy();
+                    },
+                  ),
+                  Gap(5),
+                  rowData(
+                    text: "Rate 5 Star",
+                    imageColor: Colors.deepOrangeAccent,
+
+                    image: Assets.imagesTheme,
+
+                    onTap: () {
+                      settingController.openPlayStore();
+                    },
+                  ),
+                  Gap(5),
+                  rowData(
+                    text: "Share App",
+                    image: Assets.imagesTheme,
+                    imageColor: AppColors.iconColor,
+
+                    onTap: () {
+                      settingController.shareApp();
+                    },
+                  ),
+                ],
+              ),
+            ),
+
+            // rowData(
+            //   text: "Version",
+            //   image: Assets.imagesTheme,
+
+            //   // widget: AppText(
+            //   //   "${settingController.version}",
+            //   //   fontSize: 18,
+            //   //   fontWeight: FontWeight.w400,
+            //   // ),
+            // ),
             buildNativeAd(),
           ],
         ),
@@ -130,23 +160,18 @@ class _SettingsViewState extends State<SettingsView> {
   }
 
   Widget rowData({
+    required String image,
     required String text,
-    IconData? icon,
+    required Color imageColor,
     void Function()? onTap,
-    Widget? widget,
   }) {
-    return InkWell(
+    return ListTile(
       onTap: onTap,
       splashColor: Colors.transparent,
       hoverColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          AppText(text, fontWeight: FontWeight.w400, fontSize: 18),
-          icon != null ? Icon(icon, size: 25) : widget ?? SizedBox(),
-        ],
-      ),
+      leading: CustomSettingIconView(image: image, color: imageColor),
+      title: AppText(text, fontWeight: FontWeight.w400, fontSize: 14),
+      trailing: Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white),
     );
   }
 }
