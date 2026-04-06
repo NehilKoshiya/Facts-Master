@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppText extends StatelessWidget {
   final String text;
@@ -10,6 +9,7 @@ class AppText extends StatelessWidget {
   final TextAlign? textAlign;
   final TextOverflow? overflow;
   final int? maxLines;
+  final TextStyle? style;
 
   const AppText(
     this.text, {
@@ -21,21 +21,23 @@ class AppText extends StatelessWidget {
     this.textAlign,
     this.overflow,
     this.maxLines,
+    this.style,
   });
 
   @override
   Widget build(BuildContext context) {
+    final baseStyle = style ?? Theme.of(context).textTheme.bodyLarge;
     return Text(
       text,
       maxLines: maxLines,
       overflow: overflow,
       textAlign: textAlign,
-      style: TextStyle(
+      style: baseStyle?.copyWith(
         fontFamily: 'DM Sans',
-        fontSize: fontSize,
-        fontWeight: fontWeight ?? FontWeight.normal,
-        color: color ?? Colors.white,
-        height: height,
+        fontSize: fontSize ?? baseStyle.fontSize,
+        fontWeight: fontWeight ?? baseStyle.fontWeight,
+        color: color ?? baseStyle.color,
+        height: height ?? baseStyle.height,
       ),
     );
   }

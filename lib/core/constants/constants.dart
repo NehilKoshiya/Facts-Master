@@ -114,7 +114,7 @@ class Constants {
         // media:path,
       );
     } catch (e) {
-      print("WhatsApp Share Error: $e");
+      log("WhatsApp Share Error: $e");
     }
   }
 

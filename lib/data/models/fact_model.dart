@@ -36,7 +36,7 @@ class Datum {
 class CategoryList {
   final int categoryId;
   final String categoryName;
-  final String  categoryImage;
+  final String categoryImage;
   final List<String> facts;
 
   CategoryList({

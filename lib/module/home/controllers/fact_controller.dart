@@ -17,6 +17,7 @@ class FactController extends GetxController {
 
   RxList<String> randomFacts = <String>[].obs;
   RxString selectedCategoryName = ''.obs;
+  RxString selectedCategoryImage = ''.obs;
   RxList<String> categoryFacts = <String>[].obs;
   RxList<String> filteredCategoryFacts = <String>[].obs;
 
@@ -34,11 +35,13 @@ class FactController extends GetxController {
     AppThemeModel(image: 'assets/images/theme5.jpg', textColor: Colors.black),
   ];
 
+  AppThemeModel get defaultTheme => themeImages[2];
+
   @override
   void onInit() {
     loadFacts();
     loadTheme();
-    AdService().loadBanner();
+    AdService().preloadInterstitial();
     super.onInit();
   }
 
@@ -54,21 +57,19 @@ class FactController extends GetxController {
       currentTheme.value = AppThemeModel.fromJson(
         Map<String, dynamic>.from(data),
       );
-      update();
+    } else {
+      currentTheme.value = defaultTheme;
+      StorageService().write(Constants.imagePath, defaultTheme.toJson());
     }
+    update();
   }
 
   // --- Data Loading ---
   Future<void> loadFacts() async {
-    // try {
-    print("Loading JSON..."); // Debug Point
     final jsonString = await rootBundle.loadString('assets/json/facts.json');
     final Map<String, dynamic> jsonData = json.decode(jsonString);
-    print("JSON Decoded successfully"); // Debug Point
 
     final model = FactModel.fromJson(jsonData);
-
-    print('modelmodel ::${model.data.length}');
     factData.value = model;
 
     List<CategoryList> tempAllCategories = [];
@@ -76,8 +77,6 @@ class FactController extends GetxController {
 
     if (model.data.isNotEmpty) {
       for (var datum in model.data) {
-        print('modelmodel ::${datum.categoryTitleName}');
-
         for (var category in datum.categoryList) {
           tempAllCategories.add(category);
           tempAllFacts.addAll(category.facts);
@@ -89,14 +88,7 @@ class FactController extends GetxController {
 
       tempAllFacts.shuffle(Random());
       randomFacts.assignAll(tempAllFacts);
-
-      print("Facts Loaded: ${randomFacts.length}"); // Debug Point
-    } else {
-      print("Data is empty in JSON");
     }
-    // } catch (e) {
-    //   print("Error loading facts: $e"); // અહીં તમને ચોક્કસ Error દેખાશે
-    // }
   }
 
   // --- Search & Selection ---
@@ -125,6 +117,7 @@ class FactController extends GetxController {
 
   void openCategory(CategoryList category) {
     selectedCategoryName.value = category.categoryName;
+    selectedCategoryImage.value = category.categoryImage;
     categoryFacts.assignAll(category.facts);
     filteredCategoryFacts.assignAll(category.facts);
   }
@@ -144,10 +137,9 @@ class FactController extends GetxController {
   // --- Ads ---
   void adCount() {
     showAd.value++;
-    if (showAd.value >= 3) {
+    if (showAd.value >= 4) {
       showAd.value = 0;
-      AdService().loadInterstitial();
-      AdService().showInterstitial();
+      AdService().showInterstitialIfReadyOrLoad();
     }
   }
 }

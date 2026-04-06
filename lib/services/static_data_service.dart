@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 import '../data/models/fact_model.dart';
 
-
 class StaticDataService {
   StaticDataService._();
   static final StaticDataService instance = StaticDataService._();

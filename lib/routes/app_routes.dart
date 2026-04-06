@@ -6,5 +6,5 @@ abstract class AppRoutes {
   static const String bottomBar = '/bottomBar';
   // static const String likedMessagesView = '/likedMessagesView';
   static const String savedMessagesView = '/savedMessagesView';
-  static const String themesScreen   = '/themesScreen';
+  static const String themesScreen = '/themesScreen';
 }

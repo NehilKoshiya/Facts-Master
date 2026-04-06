@@ -1,4 +1,3 @@
-import 'package:daily_facts/core/constants/app_colors.dart';
 import 'package:daily_facts/widgets/app_text.dart';
 import 'package:daily_facts/widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,27 +14,25 @@ AppBar customAppBar({
   double? leadingWidth,
   PreferredSizeWidget? bottom,
   double? toolbarHeight,
-
   Widget? titleWidget,
 }) {
+  final theme = Theme.of(context);
   return AppBar(
-    backgroundColor: AppColors.bgColor,
-    surfaceTintColor: AppColors.bgColor,
+    backgroundColor: Colors.transparent,
+    surfaceTintColor: Colors.transparent,
     elevation: 0,
-
+    scrolledUnderElevation: 0,
     title:
         titleWidget ??
         AppText(
           title,
-          fontSize: fontSize ?? 18,
-          fontWeight: fontWeight ?? FontWeight.w700,
-          color: Colors.white,
+          fontSize: fontSize ?? 20,
+          fontWeight: fontWeight ?? FontWeight.w800,
+          color: theme.colorScheme.onSurface,
         ),
-    iconTheme: const IconThemeData(
-      color: Colors.white, // 👈 Change back button color here
-    ),
+    iconTheme: IconThemeData(color: theme.colorScheme.onSurface),
     centerTitle: centerTitle ?? false,
-    toolbarHeight: toolbarHeight ?? 50,
+    toolbarHeight: toolbarHeight ?? 64,
     leadingWidth: leadingWidth,
     leading: leading,
     actions: actions,
@@ -45,8 +42,7 @@ AppBar customAppBar({
 
 AppBar mainAppBar({required BuildContext context, Color? color}) {
   return customAppBar(
-    titleWidget: CustomAppNameHeader(),
-
+    titleWidget: const CustomAppNameHeader(),
     title: '',
     context: context,
   );

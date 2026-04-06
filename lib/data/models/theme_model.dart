@@ -4,15 +4,12 @@ class AppThemeModel {
   final String image;
   final Color textColor;
 
-  AppThemeModel({
-    required this.image,
-    required this.textColor,
-  });
+  AppThemeModel({required this.image, required this.textColor});
 
   /// for saving
   Map<String, dynamic> toJson() => {
     'image': image,
-    'textColor': textColor.value,
+    'textColor': textColor.toARGB32(),
   };
 
   /// for restoring

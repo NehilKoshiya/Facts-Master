@@ -1,20 +1,21 @@
-import 'package:daily_facts/core/constants/app_colors.dart';
+import 'package:daily_facts/core/constants/constants.dart';
+import 'package:daily_facts/services/ads/ad_service.dart';
+import 'package:daily_facts/services/storage_service.dart';
+import 'package:daily_facts/widgets/app_motion.dart';
+import 'package:daily_facts/widgets/app_surfaces.dart';
+import 'package:daily_facts/widgets/app_text.dart';
 import 'package:daily_facts/widgets/custom_appbar.dart';
-import 'package:daily_facts/widgets/custom_button.dart';
-import 'package:daily_facts/widgets/custom_widget.dart';
+import 'package:daily_facts/widgets/fact_card.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:like_button/like_button.dart';
 
-import '../../../core/constants/constants.dart';
-import '../../../generated/assets.dart';
-import '../../../services/storage_service.dart';
-import '../../../widgets/app_text.dart';
 import '../controllers/setting_controller.dart';
 
 class LikedMessagesView extends StatefulWidget {
-  const LikedMessagesView({super.key});
+  const LikedMessagesView({super.key, this.showInterstitialOnOpen = false});
+
+  final bool showInterstitialOnOpen;
 
   @override
   State<LikedMessagesView> createState() => _LikedMessagesViewState();
@@ -23,218 +24,91 @@ class LikedMessagesView extends StatefulWidget {
 class _LikedMessagesViewState extends State<LikedMessagesView> {
   final SettingController c = Get.find();
 
-  // @override
-  // void initState() {
-  //   c.loadStoredData();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        c.loadStoredData();
+        if (widget.showInterstitialOnOpen) {
+          AdService().showInterstitialIfReadyOrLoad();
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    c.loadStoredData();
-    return Scaffold(
-      appBar: mainAppBar(context: context),
-
+    return AppScaffold(
+      appBar: customAppBar(
+        title: 'Saved Facts',
+        context: context,
+        toolbarHeight: 82,
+        leadingWidth: 72,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+          child: AppPulseButton(
+            onTap: Get.back,
+            borderRadius: BorderRadius.circular(16),
+            child: Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
+              ),
+              child: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: Colors.white,
+                size: 18,
+              ),
+            ),
+          ),
+        ),
+      ),
       body: Obx(() {
         if (c.likedMessages.isEmpty) {
-          return Center(child: AppText("No liked messages"));
+          return const Center(child: AppText("No saved facts yet"));
         }
 
-        return Padding(
-          padding: const EdgeInsets.only(right: 12, left: 12, top: 20),
-          child: ListView.builder(
-            itemCount: c.likedMessages.length,
-            itemBuilder: (context, index) {
-              final exportKey = GlobalKey();
+        return ListView(
+          padding: const EdgeInsets.only(bottom: 24),
+          children: [
+            const AppSectionHeader(
+              title: 'Saved Facts',
+              subtitle:
+                  'Everything you bookmarked stays here for quick access.',
+            ),
+            const Gap(18),
+            ...List.generate(c.likedMessages.length, (index) {
               final fact = c.likedMessages[index];
-              List data = StorageService().read(Constants.likedMessages) ?? [];
-              RxBool isLiked = data.contains(fact).obs;
-              return Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.itemBgColor,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.secondItemBgColor,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: AppText(
-                              fact,
-                              textAlign: TextAlign.center,
-                              fontSize: 16,
-                              height: 1.5,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        Gap(30),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CustomContentCardButtons(
-                              image: Assets.imagesCopy,
-                              bgColor: AppColors.iconBgColor,
-                              iconColor: AppColors.iconColor,
-                              onTap: () {
-                                Constants().copyMessage(fact);
-                              },
-                            ),
-                            CustomContentCardButtons(
-                              image: Assets.imagesShare,
-                              bgColor: AppColors.iconBgColor,
-                              iconColor: AppColors.iconColor,
-                              onTap: () {
-                                Constants().shareOther(fact);
-                              },
-                            ),
-                            CustomContentCardButtons(
-                              image: '',
-                              bgColor: AppColors.fevIconBgColor,
-
-                              widget: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 2,
-                                ),
-                                child: LikeButton(
-                                  isLiked: isLiked.value,
-                                  padding: EdgeInsets.zero,
-                                  onTap: (isLiked) async {
-                                    Constants().toggleLike(fact);
-                                    return !isLiked;
-                                  },
-                                  likeBuilder: (bool isLiked) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(4),
-                                      child: CustomSvgImage(
-                                        image: Assets.imagesSaved,
-                                        imageColor: isLiked
-                                            ? Colors.red
-                                            : Colors.white,
-                                      ),
-                                    );
-                                  },
-                                  circleColor: CircleColor(
-                                    start: Color.fromARGB(255, 255, 142, 142),
-                                    end: Color.fromARGB(255, 219, 105, 105),
-                                  ),
-                                  bubblesColor: BubblesColor(
-                                    dotPrimaryColor: Color.fromARGB(
-                                      255,
-                                      255,
-                                      142,
-                                      142,
-                                    ),
-                                    dotSecondaryColor: Color.fromARGB(
-                                      255,
-                                      164,
-                                      72,
-                                      72,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            CustomContentCardButtons(
-                              image: Assets.imagesWhatsApp,
-                              bgColor: AppColors.iconBgColor,
-                              iconColor: AppColors.iconColor,
-                              onTap: () {
-                                Constants().shareToWhatsApp(fact);
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+              final data = StorageService().read(Constants.likedMessages) ?? [];
+              final isLiked = data.contains(fact);
+              return Padding(
+                padding: EdgeInsets.only(
+                  bottom: index == c.likedMessages.length - 1 ? 0 : 16,
+                ),
+                child: AppAnimatedEntrance(
+                  delay: Duration(milliseconds: 55 * (index % 6)),
+                  child: FactCard(
+                    fact: fact,
+                    compact: true,
+                    isLiked: isLiked,
+                    useAnimatedLike: false,
+                    onCopy: () => Constants().copyMessage(fact),
+                    onShare: () => Constants().shareOther(fact),
+                    onWhatsApp: () => Constants().shareToWhatsApp(fact),
+                    onLike: (liked) async {
+                      Constants().toggleLike(fact);
+                      c.loadStoredData();
+                      return !liked;
+                    },
                   ),
                 ),
               );
-
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(
-              //     horizontal: 16,
-              //     vertical: 8,
-              //   ),
-              //   child: Container(
-              //     padding: const EdgeInsets.all(16),
-              //     decoration: BoxDecoration(
-              //       color: Theme.of(context).cardColor,
-              //       borderRadius: BorderRadius.circular(16),
-              //     ),
-              //     child: Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         AppText(fact, fontSize: 16, height: 1.4),
-              //         const SizedBox(height: 12),
-              //         Row(
-              //           mainAxisAlignment: MainAxisAlignment.end,
-              //           children: [
-              //             Row(
-              //               children: [
-              //                 LikeButton(
-              //                   size: 30,
-              //                   isLiked: isLiked.value,
-              //                   padding: EdgeInsets.zero,
-              //                   onTap: (isLiked) async {
-              //                     Constants().toggleLike(fact);
-              //                     return !isLiked;
-              //                   },
-              //                   likeBuilder: (bool isLiked) {
-              //                     return Icon(
-              //                       isLiked
-              //                           ? Icons.favorite
-              //                           : Icons.favorite_border,
-              //                       color: isLiked ? Colors.red : null,
-              //                       size: 26,
-              //                     );
-              //                   },
-              //                   circleColor: CircleColor(
-              //                     start: Color(0xff00ddff),
-              //                     end: Color(0xff0099cc),
-              //                   ),
-              //                   bubblesColor: BubblesColor(
-              //                     dotPrimaryColor: Color(0xff33b5e5),
-              //                     dotSecondaryColor: Color(0xff0099cc),
-              //                   ),
-              //                 ),
-              //                 SizedBox(width: 12),
-              //                 InkWell(
-              //                   onTap: () {
-              //                     Constants().shareToWhatsApp(fact);
-              //                   },
-              //                   child: Image.asset(
-              //                     Assets.imagesWhatsapp,
-              //                     height: 20,
-              //                   ),
-              //                 ),
-              //                 SizedBox(width: 12),
-              //                 InkWell(
-              //                   onTap: () {
-              //                     Constants().exportAndShare(fact);
-              //                   },
-              //                   child: Icon(Icons.share_outlined, size: 22),
-              //                 ),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // );
-            },
-          ),
+            }),
+          ],
         );
       }),
     );

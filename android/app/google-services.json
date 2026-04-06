@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "558939715822",
+    "project_id": "fact-master-417e2",
+    "storage_bucket": "fact-master-417e2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558939715822:android:b4fa227e02694058319bff",
+        "android_client_info": {
+          "package_name": "com.app.factmaster.brainbites"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9Nx6A8_SLuAwkCVSaho3sH9ake6BfT-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
