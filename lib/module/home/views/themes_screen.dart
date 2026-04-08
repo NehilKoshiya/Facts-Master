@@ -1,7 +1,6 @@
 import 'package:daily_facts/core/constants/app_colors.dart';
 import 'package:daily_facts/data/models/theme_model.dart';
 import 'package:daily_facts/module/home/controllers/fact_controller.dart';
-import 'package:daily_facts/services/ads/ad_service.dart';
 import 'package:daily_facts/widgets/app_motion.dart';
 import 'package:daily_facts/widgets/app_surfaces.dart';
 import 'package:daily_facts/widgets/app_text.dart';
@@ -9,7 +8,6 @@ import 'package:daily_facts/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class ThemesScreen extends StatefulWidget {
   const ThemesScreen({super.key});
@@ -19,16 +17,7 @@ class ThemesScreen extends StatefulWidget {
 }
 
 class _ThemesScreenState extends State<ThemesScreen> {
-  static const _bannerKey = 'themes_banner';
-
   final FactController controller = Get.find();
-  final AdService adService = AdService();
-
-  @override
-  void initState() {
-    super.initState();
-    adService.loadBanner(_bannerKey);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,24 +55,6 @@ class _ThemesScreenState extends State<ThemesScreen> {
                 subtitle: 'Tap any card below to apply it instantly.',
               ),
             ),
-            const Gap(14),
-            Obx(() {
-              final banner = adService.bannerFor(_bannerKey);
-              if (!adService.isBannerLoaded(_bannerKey) || banner == null) {
-                return const SizedBox.shrink();
-              }
-
-              return AppAnimatedEntrance(
-                delay: const Duration(milliseconds: 110),
-                child: Center(
-                  child: SizedBox(
-                    height: banner.size.height.toDouble(),
-                    width: banner.size.width.toDouble(),
-                    child: AdWidget(ad: banner),
-                  ),
-                ),
-              );
-            }),
             const Gap(16),
             GridView.builder(
               shrinkWrap: true,

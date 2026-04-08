@@ -16,6 +16,9 @@ class Constants {
   static const likedMessages = 'liked_messages';
   static const savedMessages = 'saved_messages';
   static const imagePath = 'imagePath';
+  static const appPackageName = 'com.app.factmaster.brainbites';
+  static const appStoreUrl =
+      'https://play.google.com/store/apps/details?id=$appPackageName';
 
   RxList<String> likedMessagesList = <String>[].obs;
   var imageList = [
@@ -110,7 +113,7 @@ class Constants {
       // }
       await SocialSharingPlus.shareToSocialMedia(
         SocialPlatform.whatsapp,
-        message,
+        buildFactShareMessage(message),
         // media:path,
       );
     } catch (e) {
@@ -120,7 +123,10 @@ class Constants {
 
   Future<void> shareOther(String message) async {
     await SharePlus.instance.share(
-      ShareParams(text: message, subject: 'Facts'),
+      ShareParams(
+        text: buildFactShareMessage(message),
+        subject: 'Interesting fact from Fact Master',
+      ),
     );
   }
 
@@ -146,12 +152,30 @@ class Constants {
     // }
     await SharePlus.instance.share(
       // ShareParams(text: message, files: [XFile(path)]),
-      ShareParams(text: message),
+      ShareParams(text: buildFactShareMessage(message)),
     );
   }
 
   void copyText(String text) {
     Clipboard.setData(ClipboardData(text: text));
     // Get.snackbar("Copied", "Message copied!");
+  }
+
+  String buildFactShareMessage(String fact) {
+    final trimmedFact = fact.trim();
+    return '✨ Fact of the moment\n\n'
+        '“$trimmedFact”\n\n'
+        '📚 Want more smart, scroll-worthy facts every day?\n'
+        'Download Fact Master - Brain Bites:\n'
+        '$appStoreUrl';
+  }
+
+  String buildAppShareMessage() {
+    return '🧠 Level up your feed with Fact Master - Brain Bites!\n\n'
+        '✨ Discover bite-sized facts\n'
+        '💡 Learn something new in seconds\n'
+        '📲 Save and share your favorites easily\n\n'
+        'Download now:\n'
+        '$appStoreUrl';
   }
 }

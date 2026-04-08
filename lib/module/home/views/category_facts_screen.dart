@@ -25,12 +25,12 @@ class CategoryFactsScreen extends StatefulWidget {
 class _CategoryFactsScreenState extends State<CategoryFactsScreen> {
   final FactController controller = Get.find();
   final AdService adService = AdService();
-  static const _bannerKey = 'category_details_banner';
+  static const _detailsBannerKey = 'category_details_banner_inline';
 
   @override
   void initState() {
     super.initState();
-    adService.loadBanner(_bannerKey);
+    adService.loadBanner(_detailsBannerKey);
   }
 
   @override
@@ -52,6 +52,34 @@ class _CategoryFactsScreenState extends State<CategoryFactsScreen> {
                 totalFacts: controller.filteredCategoryFacts.length,
               ),
             ),
+            const Gap(12),
+            Obx(() {
+              final banner = adService.bannerFor(_detailsBannerKey);
+              if (!adService.isBannerLoaded(_detailsBannerKey) ||
+                  banner == null) {
+                return const SizedBox.shrink();
+              }
+
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Column(
+                  children: [
+                    AppText(
+                      'Sponsored',
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).hintColor,
+                    ),
+                    const Gap(8),
+                    SizedBox(
+                      height: banner.size.height.toDouble(),
+                      width: banner.size.width.toDouble(),
+                      child: AdWidget(ad: banner),
+                    ),
+                  ],
+                ),
+              );
+            }),
             const Gap(14),
             Expanded(
               child: Obx(() {
@@ -95,21 +123,6 @@ class _CategoryFactsScreenState extends State<CategoryFactsScreen> {
                 );
               }),
             ),
-            Obx(() {
-              final banner = adService.bannerFor(_bannerKey);
-              if (!adService.isBannerLoaded(_bannerKey) || banner == null) {
-                return const SizedBox.shrink();
-              }
-
-              return Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 12),
-                child: SizedBox(
-                  height: banner.size.height.toDouble(),
-                  width: banner.size.width.toDouble(),
-                  child: AdWidget(ad: banner),
-                ),
-              );
-            }),
           ],
         ),
       );

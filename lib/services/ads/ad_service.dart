@@ -2,13 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import '../../core/constants/app_colors.dart';
+
 class AdService {
   static final AdService _instance = AdService._internal();
   factory AdService() => _instance;
   AdService._internal();
 
   final String bannerAdUnit = "ca-app-pub-5627324410826009/5829023311";
-  final String interstitialAdUnit = "ca-app-pub-5627324410826009/1339842914";
   final String nativeAdUnit = "ca-app-pub-5627324410826009/1395683235";
 
   final RxMap<String, bool> _bannerLoaded = <String, bool>{}.obs;
@@ -18,10 +19,6 @@ class AdService {
   final RxMap<String, bool> _nativeLoaded = <String, bool>{}.obs;
   final RxMap<String, bool> _nativeLoading = <String, bool>{}.obs;
   final Map<String, NativeAd> _nativeAds = {};
-
-  InterstitialAd? _interstitialAd;
-  bool _isInterstitialLoading = false;
-  bool _showInterstitialOnLoad = false;
 
   Future<void> initialize() async {
     await MobileAds.instance.initialize();
@@ -109,7 +106,28 @@ class AdService {
         },
       ),
       request: const AdRequest(),
-      nativeTemplateStyle: NativeTemplateStyle(templateType: templateType),
+      nativeTemplateStyle: NativeTemplateStyle(
+        templateType: templateType,
+        mainBackgroundColor: AppColors.darkSurfaceStrong,
+        cornerRadius: 18,
+        callToActionTextStyle: NativeTemplateTextStyle(
+          textColor: AppColors.darkPrimaryBg,
+          backgroundColor: AppColors.secondary,
+          size: 14,
+        ),
+        primaryTextStyle: NativeTemplateTextStyle(
+          textColor: AppColors.darkTextPrimary,
+          size: 16,
+        ),
+        secondaryTextStyle: NativeTemplateTextStyle(
+          textColor: AppColors.darkTextSecondary,
+          size: 13,
+        ),
+        tertiaryTextStyle: NativeTemplateTextStyle(
+          textColor: AppColors.secondary,
+          size: 12,
+        ),
+      ),
     );
 
     _nativeAds[key] = native;
@@ -120,71 +138,5 @@ class AdService {
     _nativeLoading[key] = false;
     _nativeLoaded[key] = false;
     _nativeAds.remove(key)?.dispose();
-  }
-
-  Future<void> preloadInterstitial() async {
-    if (_interstitialAd != null || _isInterstitialLoading) return;
-
-    _isInterstitialLoading = true;
-    await InterstitialAd.load(
-      adUnitId: interstitialAdUnit,
-      request: const AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          debugPrint("Interstitial Loaded");
-          _interstitialAd = ad;
-          _isInterstitialLoading = false;
-          _interstitialAd!.setImmersiveMode(true);
-          _attachInterstitialCallbacks(ad);
-          if (_showInterstitialOnLoad) {
-            _showInterstitialOnLoad = false;
-            showInterstitial();
-          }
-        },
-        onAdFailedToLoad: (err) {
-          debugPrint("Interstitial Failed: ${err.message}");
-          _interstitialAd = null;
-          _isInterstitialLoading = false;
-          _showInterstitialOnLoad = false;
-        },
-      ),
-    );
-  }
-
-  void _attachInterstitialCallbacks(InterstitialAd ad) {
-    ad.fullScreenContentCallback = FullScreenContentCallback(
-      onAdDismissedFullScreenContent: (ad) {
-        ad.dispose();
-        _interstitialAd = null;
-        preloadInterstitial();
-      },
-      onAdFailedToShowFullScreenContent: (ad, error) {
-        debugPrint("Interstitial show failed: $error");
-        ad.dispose();
-        _interstitialAd = null;
-        preloadInterstitial();
-      },
-    );
-  }
-
-  void showInterstitial() {
-    if (_interstitialAd != null) {
-      final ad = _interstitialAd!;
-      _interstitialAd = null;
-      ad.show();
-      return;
-    }
-
-    preloadInterstitial();
-  }
-
-  void showInterstitialIfReadyOrLoad() {
-    if (_interstitialAd != null) {
-      showInterstitial();
-      return;
-    }
-
-    _showInterstitialOnLoad = true;
-    preloadInterstitial();
   }
 }

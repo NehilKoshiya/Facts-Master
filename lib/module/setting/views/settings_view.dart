@@ -29,7 +29,6 @@ class _SettingsViewState extends State<SettingsView> {
   @override
   void initState() {
     super.initState();
-    adService.preloadInterstitial();
     adService.loadNative(_settingsNativeKey, templateType: TemplateType.medium);
   }
 
@@ -93,8 +92,24 @@ class _SettingsViewState extends State<SettingsView> {
       return AppAnimatedEntrance(
         delay: const Duration(milliseconds: 220),
         child: AppGlassCard(
-          padding: const EdgeInsets.all(8),
-          child: SizedBox(height: 320, child: AdWidget(ad: ad)),
+          padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppText(
+                'Sponsored',
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                color: Theme.of(context).hintColor,
+              ),
+              const Gap(10),
+              SizedBox(
+                height: 340,
+                width: double.infinity,
+                child: AdWidget(ad: ad),
+              ),
+            ],
+          ),
         ),
       );
     });
@@ -229,7 +244,7 @@ class _SavedFactsPanel extends StatelessWidget {
     return AppGlassCard(
       onTap: () {
         Get.to(
-          () => const LikedMessagesView(showInterstitialOnOpen: true),
+          () => const LikedMessagesView(),
           transition: Transition.rightToLeftWithFade,
           duration: const Duration(milliseconds: 320),
         );

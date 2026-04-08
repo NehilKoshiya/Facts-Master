@@ -1,5 +1,6 @@
 import 'package:daily_facts/core/constants/app_colors.dart';
 import 'package:daily_facts/data/models/fact_model.dart';
+import 'package:daily_facts/services/ads/ad_service.dart';
 import 'package:daily_facts/widgets/app_motion.dart';
 import 'package:daily_facts/widgets/app_surfaces.dart';
 import 'package:daily_facts/widgets/app_text.dart';
@@ -7,14 +8,28 @@ import 'package:daily_facts/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../controllers/fact_controller.dart';
 import 'category_facts_screen.dart';
 
-class ExploreTopicsScreen extends StatelessWidget {
-  ExploreTopicsScreen({super.key});
+class ExploreTopicsScreen extends StatefulWidget {
+  const ExploreTopicsScreen({super.key});
 
+  @override
+  State<ExploreTopicsScreen> createState() => _ExploreTopicsScreenState();
+}
+
+class _ExploreTopicsScreenState extends State<ExploreTopicsScreen> {
   final FactController controller = Get.find();
+  final AdService adService = AdService();
+  static const _categoriesBannerKey = 'categories_banner_bottom';
+
+  @override
+  void initState() {
+    super.initState();
+    adService.loadBanner(_categoriesBannerKey);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,31 +51,64 @@ class ExploreTopicsScreen extends StatelessWidget {
       body: Obx(() {
         final groups = controller.factData.value?.data ?? [];
 
-        return ListView(
-          padding: const EdgeInsets.only(top: 8, bottom: 32),
+        return Column(
           children: [
-            if (controller.factData.value == null) ...[
-              const AppLoadingCard(height: 200),
-              const Gap(14),
-              const AppLoadingCard(height: 200),
-            ] else ...[
-              ...List.generate(groups.length, (index) {
-                final group = groups[index];
-                return Padding(
-                  padding: EdgeInsets.only(
-                    bottom: index == groups.length - 1 ? 0 : 18,
-                  ),
-                  child: AppAnimatedEntrance(
-                    delay: Duration(milliseconds: 55 * (index % 5)),
-                    child: _CategoryShowcaseSection(
-                      group: group,
-                      sectionIndex: index,
-                      onTapCategory: _openCategory,
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.only(top: 8, bottom: 24),
+                children: [
+                  if (controller.factData.value == null) ...[
+                    const AppLoadingCard(height: 200),
+                    const Gap(14),
+                    const AppLoadingCard(height: 200),
+                  ] else ...[
+                    ...List.generate(groups.length, (index) {
+                      final group = groups[index];
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          bottom: index == groups.length - 1 ? 0 : 18,
+                        ),
+                        child: AppAnimatedEntrance(
+                          delay: Duration(milliseconds: 55 * (index % 5)),
+                          child: _CategoryShowcaseSection(
+                            group: group,
+                            sectionIndex: index,
+                            onTapCategory: _openCategory,
+                          ),
+                        ),
+                      );
+                    }),
+                  ],
+                ],
+              ),
+            ),
+            Obx(() {
+              final banner = adService.bannerFor(_categoriesBannerKey);
+              if (!adService.isBannerLoaded(_categoriesBannerKey) ||
+                  banner == null) {
+                return const SizedBox.shrink();
+              }
+
+              return Padding(
+                padding: const EdgeInsets.only(top: 12, bottom: 12),
+                child: Column(
+                  children: [
+                    AppText(
+                      'Sponsored',
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).hintColor,
                     ),
-                  ),
-                );
-              }),
-            ],
+                    const Gap(8),
+                    SizedBox(
+                      height: banner.size.height.toDouble(),
+                      width: banner.size.width.toDouble(),
+                      child: AdWidget(ad: banner),
+                    ),
+                  ],
+                ),
+              );
+            }),
           ],
         );
       }),
@@ -74,7 +122,6 @@ class ExploreTopicsScreen extends StatelessWidget {
       transition: Transition.rightToLeftWithFade,
       duration: const Duration(milliseconds: 420),
     );
-    controller.adCount();
   }
 }
 

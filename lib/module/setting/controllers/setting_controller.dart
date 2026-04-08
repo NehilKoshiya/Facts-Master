@@ -53,10 +53,7 @@ class SettingController extends GetxController {
   }
 
   void openPlayStore() async {
-    final packageName = "com.app.factmaster.brainbites";
-    final url = Uri.parse(
-      "https://play.google.com/store/apps/details?id=$packageName",
-    );
+    final url = Uri.parse(Constants.appStoreUrl);
 
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
@@ -66,12 +63,13 @@ class SettingController extends GetxController {
   }
 
   void shareApp() {
-    final packageName = "com.app.factmaster.brainbites";
-    final appUrl = "https://play.google.com/store/apps/details?id=$packageName";
-
-    final text = "Hey! Check out this awesome app: $appUrl";
-
-    SharePlus.instance.share(ShareParams(text: text));
+    final text = Constants().buildAppShareMessage();
+    SharePlus.instance.share(
+      ShareParams(
+        text: text,
+        subject: 'Check out Fact Master - Brain Bites',
+      ),
+    );
   }
 
   void openPrivacyPolicy() async {

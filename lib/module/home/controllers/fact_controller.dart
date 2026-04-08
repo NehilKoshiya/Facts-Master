@@ -8,7 +8,6 @@ import '../../../core/constants/constants.dart';
 import '../../../data/models/fact_model.dart';
 import '../../../data/models/theme_model.dart';
 import '../../../services/storage_service.dart';
-import '../../../services/ads/ad_service.dart';
 
 class FactController extends GetxController {
   Rxn<FactModel> factData = Rxn<FactModel>();
@@ -24,7 +23,6 @@ class FactController extends GetxController {
   Rx<AppThemeModel?> currentTheme = Rx<AppThemeModel?>(null);
   RxBool isSearching = false.obs;
   RxString searchQuery = ''.obs;
-  RxInt showAd = 0.obs;
 
   final List<AppThemeModel> themeImages = [
     AppThemeModel(image: '', textColor: Colors.black),
@@ -41,7 +39,6 @@ class FactController extends GetxController {
   void onInit() {
     loadFacts();
     loadTheme();
-    AdService().preloadInterstitial();
     super.onInit();
   }
 
@@ -131,15 +128,6 @@ class FactController extends GetxController {
             .where((f) => f.toLowerCase().contains(query.toLowerCase()))
             .toList(),
       );
-    }
-  }
-
-  // --- Ads ---
-  void adCount() {
-    showAd.value++;
-    if (showAd.value >= 4) {
-      showAd.value = 0;
-      AdService().showInterstitialIfReadyOrLoad();
     }
   }
 }

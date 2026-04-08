@@ -1,5 +1,4 @@
 import 'package:daily_facts/core/constants/constants.dart';
-import 'package:daily_facts/services/ads/ad_service.dart';
 import 'package:daily_facts/services/storage_service.dart';
 import 'package:daily_facts/widgets/app_motion.dart';
 import 'package:daily_facts/widgets/app_surfaces.dart';
@@ -13,9 +12,7 @@ import 'package:get/get.dart';
 import '../controllers/setting_controller.dart';
 
 class LikedMessagesView extends StatefulWidget {
-  const LikedMessagesView({super.key, this.showInterstitialOnOpen = false});
-
-  final bool showInterstitialOnOpen;
+  const LikedMessagesView({super.key});
 
   @override
   State<LikedMessagesView> createState() => _LikedMessagesViewState();
@@ -30,9 +27,6 @@ class _LikedMessagesViewState extends State<LikedMessagesView> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         c.loadStoredData();
-        if (widget.showInterstitialOnOpen) {
-          AdService().showInterstitialIfReadyOrLoad();
-        }
       }
     });
   }

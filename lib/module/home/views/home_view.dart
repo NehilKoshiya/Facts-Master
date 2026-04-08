@@ -4,14 +4,12 @@ import 'package:daily_facts/generated/assets.dart';
 import 'package:daily_facts/module/home/views/explore_topics_screen.dart';
 import 'package:daily_facts/module/home/views/themes_screen.dart';
 import 'package:daily_facts/module/setting/views/settings_view.dart';
-import 'package:daily_facts/services/ads/ad_service.dart';
 import 'package:daily_facts/services/storage_service.dart';
 import 'package:daily_facts/widgets/app_motion.dart';
 import 'package:daily_facts/widgets/app_surfaces.dart';
 import 'package:daily_facts/widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:like_button/like_button.dart';
 
 import '../controllers/fact_controller.dart';
@@ -25,17 +23,9 @@ class FactsReelsScreen extends StatefulWidget {
 
 class _FactsReelsScreenState extends State<FactsReelsScreen> {
   final FactController controller = Get.find<FactController>();
-  final AdService adService = AdService();
   final PageController _pageController = PageController();
-  static const _homeBannerKey = 'home_reels_banner';
   int _currentIndex = 0;
   bool _didPrecacheThemes = false;
-
-  @override
-  void initState() {
-    super.initState();
-    adService.loadBanner(_homeBannerKey);
-  }
 
   @override
   void didChangeDependencies() {
@@ -188,26 +178,6 @@ class _FactsReelsScreenState extends State<FactsReelsScreen> {
                         ],
                       ),
                     ),
-                  ),
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 90,
-                    child: Obx(() {
-                      final banner = adService.bannerFor(_homeBannerKey);
-                      if (!adService.isBannerLoaded(_homeBannerKey) ||
-                          banner == null) {
-                        return const SizedBox.shrink();
-                      }
-
-                      return Center(
-                        child: SizedBox(
-                          height: banner.size.height.toDouble(),
-                          width: banner.size.width.toDouble(),
-                          child: AdWidget(ad: banner),
-                        ),
-                      );
-                    }),
                   ),
                   Positioned(
                     left: 0,
